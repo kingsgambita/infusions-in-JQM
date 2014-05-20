@@ -1,0 +1,13 @@
+﻿label.error{
+	color: red;
+	font-weight: bold;
+	vertical-align: top;
+	float:center;
+	padding-left:.5em;
+	white-space:nowrap;
+}
+div.errorProne{
+	height: 70px;
+}
+
+#nhi-rep{text-transform:uppercase}
