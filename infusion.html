@@ -54,7 +54,7 @@
 
 	<div data-role="content">	
 		<a href="#dobutamine" data-role="button" data-icon="arrow-r" data-iconpos="right">Dobutamine</a> 
-		<a href="#dopamine" data-role="button"data-icon="arrow-r" data-iconpos="right">Dopamine</a> 
+		<a href="#stepOne" data-role="button"data-icon="arrow-r" data-iconpos="right">Dopamine</a> 
 		
 			
 	</div><!-- /content -->
@@ -86,7 +86,7 @@
 	</div><!-- /footer -->
 </div><!-- /page -->
 <!-- Start of third page -->
-<div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="dopamine">
+<div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepOne">
 
 	<div data-role="header">
 		<a href="#" data-icon="back" data-rel="back" title="Go back">Back</a><h1>Dopamine Infusions</h1>
@@ -109,6 +109,55 @@
 			    <input name="weight" id="weight" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required>
 			</div></div></div>
 			</div><!-- /grid-b -->
+			
+
+			<p></p>
+			<div class="ui-grid-a">
+				<div class="ui-block-a"><input type="reset" id="reset" name="reset"value="Reset" data-icon="back"data-theme="a"/></div>
+			
+			    <div class="ui-block-b"><a data-role="button" onclick="stepOneSubmission();" data-theme="a">Submit</a></div>
+		</div>
+			
+			
+			
+			
+		</form>
+					
+		
+				
+					
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>CCDHB</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<!-- Start of fourth page -->
+<div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepTwo">
+
+	<div data-role="header">
+		<a href="#" data-icon="back" data-rel="back" title="Go back">Back</a><h1>Dopamine Infusions</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		
+		
+			<div class="ui-grid-b">
+			    <div class="ui-block-a"><div class="ui-bar ui-bar-a"  style="height:80px" class="errorProne"><div class="ui-field-contain" >
+			    <label for="nameTwo">Name:</label>
+			    <input name="nameTwo" id="nameTwo" placeholder="Name" value=""autocomplete="off" minlength="2" type="text" readonly="readonly"/>
+			</div></div></div>
+			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:80px" class="errorProne"><div class="ui-field-contain">
+			    <label for="nhiTwo">NHI:</label>
+			    <input name="nhiTwo" id="nhiTwo" autocomplete="off" placeholder="NHI" value="" type="text" readonly="readonly"/>
+			</div></div></div>
+			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:80px"class="errorProne"><div class="ui-field-contain">
+			    <label for="weightTwo">Weight:</label>
+			    <input name="weightTwo" id="weightTwo" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required readonly="readonly"/>
+			</div></div></div>
+			</div><!-- /grid-b -->
+			<form id="formStepTwo" name="formStepTwo" method="post"data-ajax="false">
 			
 			<div class="ui-grid-a">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
@@ -133,7 +182,7 @@
 			<div class="ui-grid-a">
 				<div class="ui-block-a"><input type="reset" id="reset" name="reset"value="Reset" data-icon="back"data-theme="a"/></div>
 			
-			    <div class="ui-block-b"><a data-role="button" onclick="formSubmission();" data-theme="a">Submit</a></div>
+			    <div class="ui-block-b"><a data-role="button" onclick="stepTwoSubmission();" data-theme="a">Submit</a></div>
 		</div>
 			
 			
@@ -150,8 +199,11 @@
 		<h4>CCDHB</h4>
 	</div><!-- /footer -->
 </div><!-- /page -->
-<!-- Start of fourth page -->
-<div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="dopaminereport">
+
+
+
+<!-- Start of fifth page -->
+<div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="theReport">
 
 	<div data-role="header">
 		<a href="#" data-icon="back" data-rel="back" title="Go back">Back</a><h1>Dopamine Infusion Preparation</h1>
@@ -178,13 +230,13 @@
 			<div class="ui-grid-a">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="fluid-rep">Infusion Fluid:</label>
-			    <input name="fluid-rep" id="fluid-rep" placeholder="Select Infusion Fluid" value=""readonly="readonly">
+			    <input name="fluid-rep" id="fluid-rep" placeholder="Infusion Fluid" value=""readonly="readonly">
 					
 				</input>
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="strength-rep">Strength:</label>
-			    <input name="strength-rep" id="strength-rep" placeholder="Select Infusion Strength" value=""readonly="readonly">
+			    <input name="strength-rep" id="strength-rep" placeholder="Infusion Strength" value=""readonly="readonly">
 					
 					</input>
 			</div></div></div>
