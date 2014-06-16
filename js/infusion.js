@@ -14,6 +14,18 @@ function stepOneSubmission() {
     var weight = $('#weight').val();
     $('#weightTwo').val(weight);
 	
+	var strengthSelect=$("#strength");
+	
+	
+	
+	if (weight>3)
+	{
+	$("#strength option[value=4]").prop('disabled',true);
+	strengthSelect.selectmenu("refresh");
+	$.mobile.pageContainer.pagecontainer("change", "#stepTwo");
+	}
+	
+	
     $.mobile.pageContainer.pagecontainer("change", "#stepTwo");
 };
 };
