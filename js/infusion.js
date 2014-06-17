@@ -1,4 +1,41 @@
+function setStrengthValues(){
+	
+	var weight = $('#weight').val();
+    $('#weightTwo').val(weight);
+	var strengthSelect=$("#strength");
+	var selectValues = [{"single": "Single", "double": "Double", "quad": "Quad"}];
 
+    if (weight >= 3) {
+	 $("#strength").find('option').remove();
+     $(selectValues[0]).each(function (key, value) {
+         $.each(selectValues[0], function (key, value) {
+             strengthSelect
+			 .append($("<option></option>")
+			 .attr("value", key)
+			 .text(value));
+         });
+     });
+	strengthSelect.find('option:contains(' + selectValues[0].quad + ')').remove();	
+	strengthSelect.val('Single');
+	strengthSelect.selectmenu("refresh");		
+    } 
+	
+	else {
+        $("#strength").find('option').remove();
+        $(selectValues[0]).each(function (key, value) {
+            $.each(selectValues[0], function (key, value) {
+            strengthSelect
+			 .append($("<option></option>")
+			 .attr("value", key)
+			 .text(value));
+         });
+     });
+ 	strengthSelect.val('Single');
+ 	strengthSelect.selectmenu("refresh");
+	}		
+};
+	
+	
 
 
 function stepOneSubmission() {
@@ -13,18 +50,6 @@ function stepOneSubmission() {
 	
     var weight = $('#weight').val();
     $('#weightTwo').val(weight);
-	
-	var strengthSelect=$("#strength");
-	
-	
-	
-	if (weight>3)
-	{
-	$("#strength option[value=4]").prop('disabled',true);
-	strengthSelect.selectmenu("refresh");
-	$.mobile.pageContainer.pagecontainer("change", "#stepTwo");
-	}
-	
 	
     $.mobile.pageContainer.pagecontainer("change", "#stepTwo");
 };

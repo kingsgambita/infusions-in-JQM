@@ -106,7 +106,7 @@
 			</div></div></div>
 			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:80px"class="errorProne"><div class="ui-field-contain">
 			    <label for="weight">Weight:</label>
-			    <input name="weight" id="weight" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required>
+			    <input onkeyup="setStrengthValues()" name="weight" id="weight" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required>
 			</div></div></div>
 			</div><!-- /grid-b -->
 			
@@ -171,9 +171,9 @@
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="strength">Strength:</label>
 			    <select name="strength" id="strength" placeholder="Select Infusion Strength" data-native-menu="false" value="">
-						<option value=1>Single</option>
-						<option value=2>Double</option>
-						<option value=4>Quad</option>
+						<option value=single>Single</option>
+						<option value=double>Double</option>
+						<option value=quad>Quad</option>
 					</select>
 			</div></div></div>
 			    
