@@ -1,11 +1,13 @@
 function setStrengthValues(){
 	
+	var maxDoubleWeight = 2.666;
+	var maxQuadWeight = 1.333;
+	
 	var weight = $('#weight').val();
-    $('#weightTwo').val(weight);
 	var strengthSelect=$("#strength");
 	var selectValues = [{"single": "Single", "double": "Double", "quad": "Quad"}];
 
-    if (weight >= 3) {
+    if (weight > maxDoubleWeight) {
 	 $("#strength").find('option').remove();
      $(selectValues[0]).each(function (key, value) {
          $.each(selectValues[0], function (key, value) {
@@ -15,7 +17,23 @@ function setStrengthValues(){
 			 .text(value));
          });
      });
-	strengthSelect.find('option:contains(' + selectValues[0].quad + ')').remove();	
+	strengthSelect.find('option:contains(' + selectValues[0].quad + ')').remove();
+	strengthSelect.find('option:contains(' + selectValues[0].double + ')').remove();		
+	strengthSelect.val('Single');
+	strengthSelect.selectmenu("refresh");		
+    } 
+	
+	else if (weight > maxQuadWeight) {
+	 $("#strength").find('option').remove();
+     $(selectValues[0]).each(function (key, value) {
+         $.each(selectValues[0], function (key, value) {
+             strengthSelect
+			 .append($("<option></option>")
+			 .attr("value", key)
+			 .text(value));
+         });
+     });
+	strengthSelect.find('option:contains(' + selectValues[0].quad + ')').remove();		
 	strengthSelect.val('Single');
 	strengthSelect.selectmenu("refresh");		
     } 
