@@ -1,3 +1,42 @@
+
+// Global infusion variables
+
+var drugName = "Dopamine";
+var drugPurpose;	//only used where drug calculations differ according to purpose eg insulin
+var ampVolume=5;
+var ampVolUnits="mL";
+var ampAmount=200;
+var ampAmtUnits="mg";
+var ampDescription = ampAmount+" "+ampAmtUnits+" in " +ampVolume+ " "+ampVolUnits;
+var stabThreshold=3.2;	//stability threshold in mg/mL
+var syringeVol=50;		//usually will be 50 mL
+var multiple = 30;
+var strengthMultiple;	//ie single = 1, double = 2, quad = 4
+var targetAmount;	//(weight*strengthMultiple*multiple) rounded to 1 decimal place
+var actualAmount;	//(ampAmount*actualVol/ampVolume) rounded to 1 decimal place. This is the actual amount of drug added to the syringe.
+var actualVol;	//(targetAmount/(ampAmount/ampVolume)) rounded to 1 decimal place. This is the actual volume of drug to add to the syringe.
+var diluentVol;	//(syringeVol-actualVol) rounded to 1 decimal place
+var preparationBox; 
+var deliveryBox;
+var delBoxSingle = "Some text about rates and delivery";//the delivery results when single strength infusion selected
+var delBoxDouble;
+var delBoxQuad;
+var solutionDescription;
+var solutionConc;
+var stabilityBox;
+var reportPrepDate;
+var reportExpDate;
+
+
+function roundToTwo(num) {    
+    return +(Math.round(num + "e+2")  + "e-2");
+}
+
+function roundToOne(num) {    
+    return +(Math.round(num + "e+1")  + "e-1");
+}
+
+
 function setStrengthValues(){
 	
 	var maxDoubleWeight = 2.666;
@@ -93,6 +132,41 @@ function stepTwoSubmission() {
 	
 	var infusionStrengthText=$( "#strength option:selected" ).text();
 	$('#strength-rep').val(infusionStrengthText);
+	
+	switch (infusionStrengthText){
+	case "Single":
+		strengthMultiple=1;
+		deliveryBox=delBoxSingle;
+		break;
+	case "Double":
+		strengthMultiple=2;
+		deliveryBox=delBoxDouble;
+		break;
+	case "Quad":
+		strengthMultiple=4;
+		deliveryBox=delBoxQuad;
+		break;
+	}
+	
+	targetAmount = roundToOne(weight*strengthMultiple*multiple);
+	actualVol = roundToOne(targetAmount/(ampAmount/ampVolume));	
+	actualAmount = roundToOne(ampAmount*actualVol/ampVolume);
+	diluentVol=roundToOne(syringeVol-actualVol);
+	solutionConc = roundToTwo(actualAmount/syringeVol);	
+	
+	preparationBox="Add "+actualVol+ " mL ("+actualAmount+" mg) of "+drugName+" ("+ampDescription+") to "+diluentVol+" mL of "+infusionFluid+ "\nThis wil give "+syringeVol+ " mL of a "+solutionConc+" mg/mL ("+solutionConc*1000+" micrograms/mL) solution of "+drugName;
+	
+	
+	
+	
+	
+	stabilityBox="This infusion has a concentration of "+solutionConc+ " mg/mL which is not greater than the stability threshold of "+stabThreshold+" mg/mL.\nThe infusion has a 24-hour stability";
+	
+	$('#prepRep').val(preparationBox);
+	$('#deliveryRep').val(deliveryBox);
+	$('#stabilityRep').val(stabilityBox);
+		
+		
 	
     $.mobile.pageContainer.pagecontainer("change", "#theReport");
 };

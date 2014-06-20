@@ -254,16 +254,16 @@
 			
 	<form class="ui-body ui-body-a ui-corner-all">
 		<div class="ui-field-contain">
-		        <label for="prep-rep">Preparation:</label>
-		        <textarea cols="40" rows="8" name="prep-rep" id="prep-rep"readonly="yes"></textarea>
+		        <label for="prepRep">Preparation:</label>
+		        <textarea cols="40" rows="8" name="prepRep" id="prepRep"readonly="yes"></textarea>
 		    </div>
 		<div class="ui-field-contain">
-		        <label for="delivery-rep">Delivery:</label>
-		        <textarea cols="40" rows="8" name="delivery-rep" id="delivery-rep"readonly="readonly"></textarea>
+		        <label for="deliveryRep">Delivery:</label>
+		        <textarea cols="40" rows="8" name="deliveryRep" id="deliveryRep"readonly="readonly"></textarea>
 		    </div>
 		<div class="ui-field-contain">
-		        <label for="stability-rep">Stability:</label>
-		        <textarea cols="40" rows="8" name="stability-rep" id="stability-rep"readonly="readonly"></textarea>
+		        <label for="stabilityRep">Stability:</label>
+		        <textarea cols="40" rows="8" name="stabilityRep" id="stabilityRep"readonly="readonly"></textarea>
 		    </div>
 		
 	</form>		
@@ -307,7 +307,7 @@
 
 <script>
 	$.validator.addMethod("regex",function(value,element){
-        return this.optional(element) || /^[a-zA-Z]{3}[0-9]{4}/i.test(value);
+        return this.optional(element) || /^[a-zA-Z]{3}[0-9]{4}/i.test(value); //Ensures 3 letters then 4 numbers
     },"Valid NHI required");
 	
 	$.validator.addMethod("maxDecimal",function(value,element){
