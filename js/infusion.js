@@ -18,9 +18,9 @@ var actualVol;	//(targetAmount/(ampAmount/ampVolume)) rounded to 1 decimal place
 var diluentVol;	//(syringeVol-actualVol) rounded to 1 decimal place
 var preparationBox; 
 var deliveryBox;
-var delBoxSingle = "Some text about rates and delivery";//the delivery results when single strength infusion selected
-var delBoxDouble;
-var delBoxQuad;
+var delBoxSingle= "0.1 mL/hour = 1 micrograms/kg/minute \n0.5 mL/hour = 5 micrograms/kg/minute \n1 mL/hour = 10 micrograms/kg/minute \n2 mL/hour = 20 micrograms/kg/minute";//the delivery results when single strength infusion selected
+var delBoxDouble= "0.1 mL/hour = 2 micrograms/kg/minute \n0.5 mL/hour = 10 micrograms/kg/minute \n1 mL/hour = 20 micrograms/kg/minute";
+var delBoxQuad= "0.1 mL/hour = 4 micrograms/kg/minute \n0.5 mL/hour = 20 micrograms/kg/minute";//the delivery results when quad strength infusion selected
 var solutionDescription;
 var solutionConc;
 var stabilityBox;
@@ -158,9 +158,10 @@ function stepTwoSubmission() {
 	
 	
 	
-	
-	
-	stabilityBox="This infusion has a concentration of "+solutionConc+ " mg/mL which is not greater than the stability threshold of "+stabThreshold+" mg/mL.\nThe infusion has a 24-hour stability";
+	if(solutionConc>stabThreshold){
+		stabilityBox="This infusion has a concentration of "+solutionConc+ " mg/mL which is greater than the stability threshold of "+stabThreshold+" mg/mL.\nThe infusion is unstable and MUST NOT be used."}
+		else{
+stabilityBox="This infusion has a concentration of "+solutionConc+ " mg/mL which is not greater than the stability threshold of "+stabThreshold+" mg/mL.\nThe infusion has a 24-hour stability"}
 	
 	$('#prepRep').val(preparationBox);
 	$('#deliveryRep').val(deliveryBox);
