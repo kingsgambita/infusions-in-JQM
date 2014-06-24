@@ -29,7 +29,7 @@
 	
 
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
- <link rel="stylesheet" href="css/infusion.css" />
+ <link rel="stylesheet" href="css/infusion.css" media="screen" />
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"></script>
@@ -147,15 +147,15 @@
 			<div class="ui-grid-b">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a"  style="height:80px" class="errorProne"><div class="ui-field-contain" >
 			    <label for="nameTwo">Name:</label>
-			    <input name="nameTwo" id="nameTwo" placeholder="Name" value=""autocomplete="off" minlength="2" type="text" readonly="readonly"/>
+			    <input name="nameTwo" id="nameTwo" placeholder="Name" value=""autocomplete="off" minlength="2" type="text" readonly="readonly"disabled="true"/>
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:80px" class="errorProne"><div class="ui-field-contain">
 			    <label for="nhiTwo">NHI:</label>
-			    <input name="nhiTwo" id="nhiTwo" autocomplete="off" placeholder="NHI" value="" type="text" readonly="readonly"/>
+			    <input name="nhiTwo" id="nhiTwo" autocomplete="off" placeholder="NHI" value="" type="text" readonly="readonly"disabled="true"/>
 			</div></div></div>
 			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:80px"class="errorProne"><div class="ui-field-contain">
 			    <label for="weightTwo">Weight:</label>
-			    <input name="weightTwo" id="weightTwo" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required readonly="readonly"/>
+			    <input name="weightTwo" id="weightTwo" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required readonly="readonly"disabled="true"/>
 			</div></div></div>
 			</div><!-- /grid-b -->
 			<form id="formStepTwo" name="formStepTwo" method="post"data-ajax="false">
@@ -211,33 +211,33 @@
 	</div><!-- /header -->
 
 	<div data-role="content">	
-		
+		<div class="noScreen" id="stickyLabel">Afix Patient Identification Label Here</div>
 		<div>
 			<div class="ui-grid-b">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="name-rep">Name:</label>
-			    <input name="name-rep" id="name-rep" placeholder="Name" value="" minlength="2" type="text" readonly="readonly"/>
+			    <input name="name-rep" id="name-rep" placeholder="Name" value="" minlength="2" type="text" readonly="readonly" disabled="true"/>
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="nhi-rep">NHI:</label>
-			    <input name="nhi-rep" id="nhi-rep" placeholder="NHI" value="" type="text" readonly="readonly"/>
+			    <input name="nhi-rep" id="nhi-rep" placeholder="NHI" value="" type="text" readonly="readonly" disabled="true"/>
 			</div></div></div>
 			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="weight-rep">Weight:</label>
-			    <input name="weight-rep" id="weight-rep" min="0.3" max="6" placeholder="kg" value="" type="number"readonly="readonly">
+			    <input name="weight-rep" id="weight-rep" placeholder="kg" value="" type="text"readonly="readonly" disabled="true">
 			</div></div></div>
 			</div><!-- /grid-b -->
 			
 			<div class="ui-grid-a">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="fluid-rep">Infusion Fluid:</label>
-			    <input name="fluid-rep" id="fluid-rep" placeholder="Infusion Fluid" value=""readonly="readonly">
+			    <input name="fluid-rep" id="fluid-rep" placeholder="Infusion Fluid" value=""readonly="readonly"disabled="true">
 					
 				</input>
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="strength-rep">Strength:</label>
-			    <input name="strength-rep" id="strength-rep" placeholder="Infusion Strength" value=""readonly="readonly">
+			    <input name="strength-rep" id="strength-rep" placeholder="Infusion Strength" value=""readonly="readonly"disabled="true">
 					
 					</input>
 			</div></div></div>
@@ -256,23 +256,23 @@
 	<form class="ui-body ui-body-a ui-corner-all">
 		<div class="ui-field-contain">
 		        <label for="prepRep">Preparation:</label>
-		        <textarea cols="40" rows="8" name="prepRep" id="prepRep"readonly="yes"></textarea>
+		        <textarea cols="40" rows="8" name="prepRep" id="prepRep"readonly="yes"disabled="true"></textarea>
 		    </div>
 		<div class="ui-field-contain">
 		        <label for="deliveryRep">Delivery:</label>
-		        <textarea cols="40" rows="8" name="deliveryRep" id="deliveryRep"readonly="readonly"></textarea>
+		        <textarea cols="40" rows="8" name="deliveryRep" id="deliveryRep"readonly="readonly"disabled="true"></textarea>
 		    </div>
 		<div class="ui-field-contain">
 		        <label for="stabilityRep">Stability:</label>
-		        <textarea cols="40" rows="8" name="stabilityRep" id="stabilityRep"readonly="readonly"></textarea>
+		        <textarea cols="40" rows="8" name="stabilityRep" id="stabilityRep"readonly="readonly"disabled="true"></textarea>
 		    </div>
 		<div class="noScreen"><div class="ui-field-contain" >
 		        <label for="datePrep">Report Prepared:</label>
-		        <textarea cols="40" rows="8" name="datePrep" id="datePrep"readonly="readonly"></textarea>
+		        <textarea cols="40" rows="1" name="datePrep" id="datePrep"readonly="readonly"></textarea>
 		    </div>
 		<div class="ui-field-contain" class="noScreen">
 		        <label for="dateExp">Report Expires:</label>
-		        <textarea cols="40" rows="8" name="dateExp" id="dateExp"readonly="readonly"></textarea>
+		        <textarea cols="40" rows="1" name="dateExp" id="dateExp"readonly="readonly"></textarea>
 		    </div></div>
 	</form>		
 				

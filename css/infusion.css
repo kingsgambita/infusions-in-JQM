@@ -12,7 +12,9 @@ div.errorProne{
 #nhiTwo{text-transform:uppercase}
 #nhi-rep{text-transform:uppercase}
 
-/*.noScreen{
+.noScreen{
 	display:none;
 }
-*/
+.ui-state-disabled {
+    opacity: 0.9;
+}

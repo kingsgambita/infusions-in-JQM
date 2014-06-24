@@ -26,7 +26,8 @@ var solutionConc;
 var stabilityBox;
 var datePrep;
 var dateExp;
-
+var stabilityDuration;
+var stable;
 
 function roundToTwo(num) {    
     return +(Math.round(num + "e+2")  + "e-2");
@@ -123,7 +124,8 @@ function stepTwoSubmission() {
     $('#nhi-rep').val(nhi);
 	
     var weight = $('#weightTwo').val();
-    $('#weight-rep').val(weight);
+	var weightKg = (weight+" kg");
+    $('#weight-rep').val(weightKg);
 	
 	var infusionFluid = $('#fluid').val();
 	$('#fluid-rep').val(infusionFluid);
@@ -159,8 +161,10 @@ function stepTwoSubmission() {
 	
 	
 	if(solutionConc>stabThreshold){
+		stabilityDuration=0;
 		stabilityBox="This infusion has a concentration of "+solutionConc+ " mg/mL which is greater than the stability threshold of "+stabThreshold+" mg/mL.\nThe infusion is unstable and MUST NOT be used."}
 		else{
+		stabilityDuration=1;	
 stabilityBox="This infusion has a concentration of "+solutionConc+ " mg/mL which is not greater than the stability threshold of "+stabThreshold+" mg/mL.\nThe infusion has a 24-hour stability"}
 	
 	$('#prepRep').val(preparationBox);
@@ -202,7 +206,7 @@ function dateFunction() {
     var datePrep = day+'/'+month+'/'+year+' at '+hour+':'+minute;
 	$('#datePrep').val(datePrep);
 	
-	var expiry = new Date(now.getTime() + (24 * 60 * 60 * 1000));	
+	var expiry = new Date(now.getTime() + (stabilityDuration*(24 * 60 * 60 * 1000)));	
 	var year    = expiry.getFullYear();
     var month   = expiry.getMonth()+1; 
     var day     = expiry.getDate();
