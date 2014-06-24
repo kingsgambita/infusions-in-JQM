@@ -24,8 +24,8 @@ var delBoxQuad= "0.1 mL/hour = 4 micrograms/kg/minute \n0.5 mL/hour = 20 microgr
 var solutionDescription;
 var solutionConc;
 var stabilityBox;
-var reportPrepDate;
-var reportExpDate;
+var datePrep;
+var dateExp;
 
 
 function roundToTwo(num) {    
@@ -166,6 +166,9 @@ stabilityBox="This infusion has a concentration of "+solutionConc+ " mg/mL which
 	$('#prepRep').val(preparationBox);
 	$('#deliveryRep').val(deliveryBox);
 	$('#stabilityRep').val(stabilityBox);
+	$('#datePrep').val(datePrep);	
+	$('#dateExp').val(dateExp);
+	
 		
 		
 	
@@ -173,6 +176,56 @@ stabilityBox="This infusion has a concentration of "+solutionConc+ " mg/mL which
 };
 };
 
+function dateFunction() {
+	var now     = new Date();
+	var year    = now.getFullYear();
+    var month   = now.getMonth()+1; 
+    var day     = now.getDate();
+    var hour    = now.getHours();
+    var minute  = now.getMinutes();
+    var second  = now.getSeconds(); 
+    if(month.toString().length == 1) {
+        var month = '0'+month;
+    }
+    if(day.toString().length == 1) {
+        var day = '0'+day;
+    }   
+    if(hour.toString().length == 1) {
+        var hour = '0'+hour;
+    }
+    if(minute.toString().length == 1) {
+        var minute = '0'+minute;
+    }
+    if(second.toString().length == 1) {
+        var second = '0'+second;
+    }   
+    var datePrep = day+'/'+month+'/'+year+' at '+hour+':'+minute;
+	$('#datePrep').val(datePrep);
 	
-		
-	   
+	var expiry = new Date(now.getTime() + (24 * 60 * 60 * 1000));	
+	var year    = expiry.getFullYear();
+    var month   = expiry.getMonth()+1; 
+    var day     = expiry.getDate();
+    var hour    = expiry.getHours();
+    var minute  = expiry.getMinutes();
+    var second  = expiry.getSeconds(); 
+    if(month.toString().length == 1) {
+        var month = '0'+month;
+    }
+    if(day.toString().length == 1) {
+        var day = '0'+day;
+    }   
+    if(hour.toString().length == 1) {
+        var hour = '0'+hour;
+    }
+    if(minute.toString().length == 1) {
+        var minute = '0'+minute;
+    }
+    if(second.toString().length == 1) {
+        var second = '0'+second;
+    }   
+    var dateExp = day+'/'+month+'/'+year+' at '+hour+':'+minute;
+	$('#dateExp').val(dateExp);
+}		
+
+

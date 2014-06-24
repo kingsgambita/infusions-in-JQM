@@ -6,7 +6,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
    
-	<link rel="stylesheet" href="css/infusion.css" />
+	<link rel="stylesheet" href="css/infusion.css" media="screen" />
+	<link rel="stylesheet" href="css/infusionPrint.css" media="print"/>
    
    
    <!-- Add this to your HEAD if you want to load the 
@@ -206,7 +207,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="theReport">
 
 	<div data-role="header">
-		<a href="#" data-icon="back" data-rel="back" title="Go back">Back</a><h1>Dopamine Infusion Preparation</h1>
+		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dopamine Infusion Preparation</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
@@ -250,7 +251,7 @@
 			
 		</div>
 					
-			<h3>Report</h3>	
+			<h3 class="noPrint">Report</h3>	
 			
 	<form class="ui-body ui-body-a ui-corner-all">
 		<div class="ui-field-contain">
@@ -265,14 +266,21 @@
 		        <label for="stabilityRep">Stability:</label>
 		        <textarea cols="40" rows="8" name="stabilityRep" id="stabilityRep"readonly="readonly"></textarea>
 		    </div>
-		
+		<div class="noScreen"><div class="ui-field-contain" >
+		        <label for="datePrep">Report Prepared:</label>
+		        <textarea cols="40" rows="8" name="datePrep" id="datePrep"readonly="readonly"></textarea>
+		    </div>
+		<div class="ui-field-contain" class="noScreen">
+		        <label for="dateExp">Report Expires:</label>
+		        <textarea cols="40" rows="8" name="dateExp" id="dateExp"readonly="readonly"></textarea>
+		    </div></div>
 	</form>		
 				
 					
 	</div><!-- /content -->
 
-	<div data-role="footer">
-		<h4>CCDHB</h4>
+	<div data-role="footer" class="noPrint">
+		<h4><a href="#" class="noPrint" data-role="button" onClick="dateFunction(); window.print();return false">Print Report</a></h4>
 	</div><!-- /footer -->
 </div><!-- /page -->
 
