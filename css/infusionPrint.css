@@ -17,23 +17,80 @@ div.errorProne{
 }
 
 body{
-	font:9pt Georgia,"Times New Roman",Times, serif !important;
+	font:9pt Arial, Georgia,"Times New Roman",Times, serif !important;
 	line-height:1.3 !important;
 }
 
-label{font:9pt Georgia,"Times New Roman",Times, serif !important;
+
+
+
+label{font:9pt Arial, Georgia,"Times New Roman",Times, serif !important;
 	line-height:1.3 !important;}
-h1{
+	
+	
+	
+/*h1{
 	font:14pt Georgia,"Times New Roman",Times, serif !important;
+}*/
+
+h1{
+	font:14pt Arial!important;
 }
+
 #stickyLabel{
 	border:2pt ;
 	height: 2cm;
 }
-@page{
-	size:auto;/*auto is the current printer page size*/
-	margin:0mm;/*this affects the margin in the printer settings THIS IS NOT WORKING YET!!!may need to remove the @page stuff*/
-}
+
 .ui-state-disabled {
     opacity:1 !important;
+}
+.ui-btn-up-c {
+   border: 2px solid #999999 !important;
+}
+
+#nurseCheck{
+	width:40%;
+	float:right;
+	margin-top:10pt;
+}
+
+input[type=checkbox]
+{
+ /* Double-sized Checkboxes */
+ -ms-transform: scale(2); /* IE */
+ -moz-transform: scale(2); /* FF */
+ -webkit-transform: scale(2); /* Safari and Chrome */
+ -o-transform: scale(2); /* Opera */
+ padding: 10px;
+}
+
+
+label.check{
+	font:9pt Arial;
+    display: block;
+    padding-left: 15pt;
+    text-indent: -15pt;
+}
+input.check {
+	font:9pt Arial;
+    width: 9pt;
+    height: 9pt;
+    padding: 0;
+    margin-right:20pt;
+    vertical-align: bottom;
+    position: relative;
+    top: -1pt;
+    *overflow: hidden;
+}
+input.sign{
+    width: 120pt;
+    height: 9pt;
+    padding: 0;
+    margin-right:20pt;
+    vertical-align: bottom;
+    position: relative;
+    top: -1pt;
+    *overflow: hidden;
+	
 }

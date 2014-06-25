@@ -90,7 +90,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepOne">
 
 	<div data-role="header">
-		<a href="#" data-icon="back" data-rel="back" title="Go back">Back</a><h1>Dopamine Infusions</h1>
+		<a href="#page1" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dopamine Infusions</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
@@ -138,7 +138,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepTwo">
 
 	<div data-role="header">
-		<a href="#" data-icon="back" data-rel="back" title="Go back">Back</a><h1>Dopamine Infusions</h1>
+		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dopamine Infusions</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
@@ -274,8 +274,23 @@
 		        <label for="dateExp">Report Expires:</label>
 		        <textarea cols="40" rows="1" name="dateExp" id="dateExp"readonly="readonly"></textarea>
 		    </div></div>
-	</form>		
-				
+	</form>	
+	
+	<form class="noScreen">
+	    <fieldset id="nurseCheck" data-role="none" data-iconpos="right" data-theme="a">
+	        <legend>Before commencing infusion check:</legend>
+			<p></p>
+	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Name</label>
+	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
+			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Current Weight</label>
+			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Infusion Strength</label>
+			<label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Matches Prescription</label>
+			<p></p>
+			<label class="sign"><input class="sign"data-role="none"/></label>
+	        <p>Nurse Signature 2</p>
+	    </fieldset>
+	</form>	
+			
 					
 	</div><!-- /content -->
 
