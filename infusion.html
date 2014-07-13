@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html manifest="nicuinfusions.appcache">
 <head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
     <title>drugs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-   
-	<link rel="stylesheet" href="css/infusion.css" media="screen" />
-	<link rel="stylesheet" href="css/infusionPrint.css" media="print"/>
+  
    
    
    <!-- Add this to your HEAD if you want to load the 
@@ -29,7 +29,10 @@
 	
 
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
- <link rel="stylesheet" href="css/infusion.css" media="screen" />
+   
+	<link rel="stylesheet" href="css/infusion.css" media="screen" />
+	<link rel="stylesheet" href="css/infusionPrint.css" media="print"/>
+
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"></script>
@@ -71,7 +74,8 @@
 <div data-role="page" data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home"id="dobutamine">
 
 	<div data-role="header">
-		<a href="#" data-icon="back" data-rel="back" title="Go back">Back</a><h1>Dobutamine</h1>
+		<a href="" data-icon="back" data-rel="back" title="Go back">Back</a><h1>Dobutamine</h1>
+		
 	</div><!-- /header -->
 
 	<div data-role="content">
@@ -90,7 +94,8 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepOne">
 
 	<div data-role="header">
-		<a href="#page1" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dopamine Infusions</h1>
+		<a href="#page1" data-role="button" data-inline="true" data-icon="back" data-ajax="false" >Back</a><h1>Dopamine Infusions</h1>
+		
 	</div><!-- /header -->
 
 	<div data-role="content">	
@@ -139,6 +144,7 @@
 
 	<div data-role="header">
 		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dopamine Infusions</h1>
+		
 	</div><!-- /header -->
 
 	<div data-role="content">	
@@ -208,6 +214,8 @@
 
 	<div data-role="header">
 		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dopamine Infusion Preparation</h1>
+		<a class="noPrint" id="mono" href="" data-icon="info" target="_blank"class="ui-btn-right"
+        data-rel="dialog">Monograph</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	
@@ -216,28 +224,28 @@
 			<div class="ui-grid-b">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="name-rep">Name:</label>
-			    <input name="name-rep" id="name-rep" placeholder="Name" value="" minlength="2" type="text" readonly="readonly" disabled="true"/>
+			    <input name="name-rep" id="name-rep" placeholder="Name" value="" minlength="2" type="text" readonly="readonly"/>
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="nhi-rep">NHI:</label>
-			    <input name="nhi-rep" id="nhi-rep" placeholder="NHI" value="" type="text" readonly="readonly" disabled="true"/>
+			    <input name="nhi-rep" id="nhi-rep" placeholder="NHI" value="" type="text" readonly="readonly"/>
 			</div></div></div>
 			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="weight-rep">Weight:</label>
-			    <input name="weight-rep" id="weight-rep" placeholder="kg" value="" type="text"readonly="readonly" disabled="true">
+			    <input name="weight-rep" id="weight-rep" placeholder="kg" value="" type="text"readonly="readonly">
 			</div></div></div>
 			</div><!-- /grid-b -->
 			
 			<div class="ui-grid-a">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="fluid-rep">Infusion Fluid:</label>
-			    <input name="fluid-rep" id="fluid-rep" placeholder="Infusion Fluid" value=""readonly="readonly"disabled="true">
+			    <input name="fluid-rep" id="fluid-rep" placeholder="Infusion Fluid" value=""readonly="readonly">
 					
 				</input>
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="strength-rep">Strength:</label>
-			    <input name="strength-rep" id="strength-rep" placeholder="Infusion Strength" value=""readonly="readonly"disabled="true">
+			    <input name="strength-rep" id="strength-rep" placeholder="Infusion Strength" value=""readonly="readonly">
 					
 					</input>
 			</div></div></div>
@@ -256,15 +264,15 @@
 	<form class="ui-body ui-body-a ui-corner-all">
 		<div class="ui-field-contain">
 		        <label for="prepRep">Preparation:</label>
-		        <textarea cols="40" rows="8" name="prepRep" id="prepRep"readonly="yes"disabled="true"></textarea>
+		        <textarea cols="40" rows="8" name="prepRep" id="prepRep"readonly="yes"></textarea>
 		    </div>
 		<div class="ui-field-contain">
 		        <label for="deliveryRep">Delivery:</label>
-		        <textarea cols="40" rows="8" name="deliveryRep" id="deliveryRep"readonly="readonly"disabled="true"></textarea>
+		        <textarea cols="40" rows="8" name="deliveryRep" id="deliveryRep"readonly="readonly"></textarea>
 		    </div>
 		<div class="ui-field-contain">
 		        <label for="stabilityRep">Stability:</label>
-		        <textarea cols="40" rows="8" name="stabilityRep" id="stabilityRep"readonly="readonly"disabled="true"></textarea>
+		        <textarea cols="40" rows="8" name="stabilityRep" id="stabilityRep"readonly="readonly"></textarea>
 		    </div>
 		<div class="noScreen"><div class="ui-field-contain" >
 		        <label for="datePrep">Report Prepared:</label>
@@ -277,18 +285,46 @@
 	</form>	
 	
 	<form class="noScreen">
-	    <fieldset id="nurseCheck" data-role="none" data-iconpos="right" data-theme="a">
-	        <legend>Before commencing infusion check:</legend>
+		
+	    <fieldset class="signCheck"id="docCheck" data-role="none" data-iconpos="right" data-theme="a">
+	        <legend>Prescribing NNS / RMO:</legend>
 			<p></p>
-	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Name</label>
+	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
 	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
-			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Current Weight</label>
+			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
 			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Infusion Strength</label>
 			<label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Matches Prescription</label>
 			<p></p>
 			<label class="sign"><input class="sign"data-role="none"/></label>
-	        <p>Nurse Signature 2</p>
+	        <p>NNS / Doctor Sign</p>
 	    </fieldset>
+		
+	    <fieldset class="signCheck"id="nurse1Check" data-role="none" data-iconpos="right" data-theme="a">
+	        <legend>Before preparing infusion:</legend>
+			<p></p>
+	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
+	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
+			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
+			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Infusion Strength</label>
+			<label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Matches Prescription</label>
+			<p></p>
+			<label class="sign"><input class="sign"data-role="none"/></label>
+	        <p>Nurse-1 Sign </p>
+	    </fieldset>
+		
+	    <fieldset class="signCheck"id="nurse2Check" data-role="none" data-iconpos="right" data-theme="a">
+	        <legend>Before preparing infusion:</legend>
+			<p></p>
+	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
+	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
+			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
+			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Infusion Strength</label>
+			<label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Matches Prescription</label>
+			<p></p>
+			<label class="sign"><input class="sign"data-role="none"/></label>
+	        <p>Nurse-2 Sign</p>
+	    </fieldset>
+		
 	</form>	
 			
 					

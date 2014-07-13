@@ -28,6 +28,10 @@ var datePrep;
 var dateExp;
 var stabilityDuration;
 var stable;
+var monograph="http://silentone/content/capitalDoc/310_Women_and_Children_s_Health/05_NICU/08_Drug_monographs/D_to_F/000000001833/__file__/000000001833.DOC";
+
+
+
 
 function roundToTwo(num) {    
     return +(Math.round(num + "e+2")  + "e-2");
@@ -116,6 +120,9 @@ function stepOneSubmission() {
 function stepTwoSubmission() {
 	$("#formStepTwo").valid()
 	if($("#formStepTwo").valid()) {
+		
+		$("#mono").attr("href",""+monograph);
+		
 	
     var name = $('#nameTwo').val();
     $('#name-rep').val(name);
