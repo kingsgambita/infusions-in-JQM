@@ -6,6 +6,10 @@
 	padding-left:.5em;
 	white-space:nowrap;
 }
+.warning{
+	color:red !important;
+}
+
 div.errorProne{
 	height: 70px;
 }
@@ -24,3 +28,11 @@ div.errorProne{
 	    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
 }
 /* IE8 problems with opacity*/
+
+.ui-block-c .ui-input-text{
+    width: 120px !important;
+	float: center;
+	
+}
+/* set weight input width - need to add specificity!!!*/
+
