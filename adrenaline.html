@@ -36,7 +36,7 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"></script>
- <script type="text/javascript" src="js/infusion.js"></script>
+ <script type="text/javascript" src="js/dopamine.js"></script>
 
 <HTML>
 <HEAD>
@@ -47,55 +47,16 @@
 </HEAD>
 <body> 
 
+
+
+
 <!-- Start of first page -->
-<div data-role="page" data-theme="b" id="page1">
-
-	<div data-role="header">
-		<h1>NICU Infusions</h1>
-				<a href="#about" data-icon="info" data-transition="slidedown" class="ui-btn-right"
-                data-rel="dialog">About</a>
-	</div><!-- /header -->
-
-	<div data-role="content">	
-		<a href="#dobutamine" data-role="button" data-icon="arrow-r" data-iconpos="right">Dobutamine</a> 
-		<a href="#stepOne" data-role="button"data-icon="arrow-r" data-iconpos="right">Dopamine</a> 
-		
-			
-	</div><!-- /content -->
-
-	<div data-role="footer">
-		
-		<a href="mailto:michael.hewson@ccdhb.org.nz"  data-icon="mail">Report a problem...</a>
-	</div><!-- /footer -->
-</div><!-- /page -->
-
-
-<!-- Start of second page -->
-<div data-role="page" data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home"id="dobutamine">
-
-	<div data-role="header">
-		<a href="" data-icon="back" data-rel="back" title="Go back">Back</a><h1>Dobutamine</h1>
-		
-	</div><!-- /header -->
-
-	<div data-role="content">
-	
-	
-	
-
-
-	</div><!-- /content -->
-
-	<div data-role="footer">
-		<h4>CCDHB</h4>
-	</div><!-- /footer -->
-</div><!-- /page -->
-<!-- Start of third page -->
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepOne">
 
 	<div data-role="header">
-		<a href="#page1" data-role="button" data-inline="true" data-icon="back" data-ajax="false" >Back</a><h1>Dopamine Infusions</h1>
-		
+		<h1>Adrenaline Infusions</h1>
+		<a href="#about" data-icon="info" data-transition="slidedown" class="ui-btn-right"
+		        data-rel="dialog">About</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	
@@ -119,7 +80,7 @@
 
 			<p></p>
 			<div class="ui-grid-a">
-				<div class="ui-block-a"><input type="reset" id="reset" name="reset"value="Reset" data-icon="back"data-theme="a"/></div>
+				<div class="ui-block-a"><input type="reset" id="reset" name="reset"value="Reset" data-icon="back"data-theme="a"data-iconpos="right"/></div>
 			
 			    <div class="ui-block-b"><a data-role="button" onclick="stepOneSubmission();" data-theme="a">Submit</a></div>
 		</div>
@@ -139,11 +100,11 @@
 	</div><!-- /footer -->
 </div><!-- /page -->
 
-<!-- Start of fourth page -->
+<!-- Start of second page -->
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepTwo">
 
 	<div data-role="header">
-		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dopamine Infusions</h1>
+		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Adrenaline Infusions</h1>
 		
 	</div><!-- /header -->
 
@@ -187,7 +148,7 @@
 			</div><!-- /grid-a -->
 			<p></p>
 			<div class="ui-grid-a">
-				<div class="ui-block-a"><input type="reset" id="reset" name="reset"value="Reset" data-icon="back"data-theme="a"/></div>
+				<div class="ui-block-a"><input type="reset" id="reset" name="reset"value="Reset" data-icon="back"data-theme="a"data-iconpos="right"/></div>
 			
 			    <div class="ui-block-b"><a data-role="button" onclick="stepTwoSubmission();" data-theme="a">Submit</a></div>
 		</div>
@@ -209,11 +170,11 @@
 
 
 
-<!-- Start of fifth page -->
+<!-- Start of third page -->
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="theReport">
 
 	<div data-role="header">
-		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dopamine Infusion Preparation</h1>
+		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Adrenaline Infusion Preparation</h1>
 		<a class="noPrint" id="mono" href="" data-icon="info" target="_blank"class="ui-btn-right"
         data-rel="dialog">Monograph</a>
 	</div><!-- /header -->

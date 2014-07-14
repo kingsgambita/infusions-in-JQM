@@ -1,20 +1,22 @@
 
 // Global pre-defined infusion variables
 
-var drugName = "Dopamine";
+var drugName = "Dobutamine";
 var drugPurpose;	//only used where drug calculations differ according to purpose eg insulin
-var ampVolume=5;	//drug ampoule volume
+var ampVolume=20;	//drug ampoule volume
 var ampVolUnits="mL"; //units of ampoule volume
-var ampAmount=200;	//amount of drug in ampoule
+var ampAmount=250;	//amount of drug in ampoule
 var ampAmtUnits="mg";	//units of mass of ampoule drug amount
-var stabThreshold=3.2;	//stability threshold in mg/mL
+var stabThreshold=5;	//stability threshold in mg/mL
 var syringeVol=50;		//usually will be 50 mL
 var multiple = 30;
+var maxDoubleWeight = 4.160;	//the greatest weight for which double strength remains within the stability limits
+var maxQuadWeight = 2.080;		//the greatest weight for which quad strength remains within the stability limits
 var delBoxSingle= "0.1 mL/hour = 1 micrograms/kg/minute \n0.5 mL/hour = 5 micrograms/kg/minute \n1 mL/hour = 10 micrograms/kg/minute \n2 mL/hour = 20 micrograms/kg/minute";//the delivery results when single strength infusion selected
 var delBoxDouble= "0.1 mL/hour = 2 micrograms/kg/minute \n0.5 mL/hour = 10 micrograms/kg/minute \n1 mL/hour = 20 micrograms/kg/minute";
 var delBoxQuad= "0.1 mL/hour = 4 micrograms/kg/minute \n0.5 mL/hour = 20 micrograms/kg/minute";//the delivery results when quad strength infusion selected
 var standardStability=1; //the number of days the solution is stable at standard concentration range
-var monograph="http://silentone/content/capitalDoc/310_Women_and_Children_s_Health/05_NICU/08_Drug_monographs/D_to_F/000000001833/__file__/000000001833.DOC";//link to monograph
+var monograph="http://silentone/content/capitalDoc/310_Women_and_Children_s_Health/05_NICU/08_Drug_monographs/D_to_F/000000001835/__file__/000000001835.DOC";//link to monograph
 // Global calculated infusion variables
 
 var ampDescription = ampAmount+" "+ampAmtUnits+" in " +ampVolume+ " "+ampVolUnits;
@@ -48,8 +50,7 @@ function roundToOne(num) {
 
 function setStrengthValues(){
 	
-	var maxDoubleWeight = 2.666;
-	var maxQuadWeight = 1.333;
+	
 	
 	var weight = $('#weight').val();
 	var strengthSelect=$("#strength");

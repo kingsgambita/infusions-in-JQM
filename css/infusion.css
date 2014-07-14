@@ -29,10 +29,9 @@ div.errorProne{
 }
 /* IE8 problems with opacity*/
 
-.ui-block-c .ui-input-text{
-    width: 120px !important;
-	float: center;
+/*.ui-block-c .ui-input-text{
+    width: 180px !important;
 	
-}
-/* set weight input width - need to add specificity!!!*/
+}*/
+/* set weight input width - but breaks error message layouts*/
 
