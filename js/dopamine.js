@@ -7,6 +7,7 @@ var ampVolume=5;	//drug ampoule volume
 var ampVolUnits="mL"; //units of ampoule volume
 var ampAmount=200;	//amount of drug in ampoule
 var ampAmtUnits="mg";	//units of mass of ampoule drug amount
+var alwaysStable=0;		//if no stability implications set value to 1. Otherwise 0. If = 1 this will bypass the stability calculations and return a standard message to stabilityBox
 var stabThreshold=3.2;	//stability threshold in mg/mL
 var syringeVol=50;		//usually will be 50 mL
 var multiple = 30;
@@ -16,6 +17,7 @@ var delBoxSingle= "0.1 mL/hour = 1 micrograms/kg/minute \n0.5 mL/hour = 5 microg
 var delBoxDouble= "0.1 mL/hour = 2 micrograms/kg/minute \n0.5 mL/hour = 10 micrograms/kg/minute \n1 mL/hour = 20 micrograms/kg/minute";
 var delBoxQuad= "0.1 mL/hour = 4 micrograms/kg/minute \n0.5 mL/hour = 20 micrograms/kg/minute";//the delivery results when quad strength infusion selected
 var standardStability=1; //the number of days the solution is stable at standard concentration range
+var infusionValues = [{"Dextrose 5%": "Dextrose 5%", "Dextrose 10%": "Dextrose 10%","Normal Saline":"Normal Saline"}]; //the available infusion fluids for this drug, as an array with key and value. These will be loaded by the function setStrengthValues
 var monograph="http://silentone/content/capitalDoc/310_Women_and_Children_s_Health/05_NICU/08_Drug_monographs/D_to_F/000000001833/__file__/000000001833.DOC";//link to monograph
 // Global calculated infusion variables
 
@@ -47,10 +49,35 @@ function roundToOne(num) {
     return +(Math.round(num + "e+1")  + "e-1");
 }
 
-
+function setInfusionValues(){
+	var infusionSelect=$("#fluid");
+	
+	        $("#fluid").find('option').remove();//clean out the infusion options then add in those from the infusionValues array
+	        $(infusionValues[0]).each(function (key, value) {
+	            $.each(infusionValues[0], function (key, value) {
+	            infusionSelect
+				 .append($("<option></option>")
+				 .attr("value", key)
+				 .text(value));
+	         });
+	     });
+	 	infusionSelect.selectmenu("refresh");
+	};
+	
 function setStrengthValues(){
 	
+	var infusionSelect=$("#fluid");
 	
+	        $("#fluid").find('option').remove();//clean out the infusion options then add in those from the infusionValues array
+	        $(infusionValues[0]).each(function (key, value) {
+	            $.each(infusionValues[0], function (key, value) {
+	            infusionSelect
+				 .append($("<option></option>")
+				 .attr("value", key)
+				 .text(value));
+	         });
+	     });
+	 	infusionSelect.selectmenu("refresh");
 	
 	var weight = $('#weight').val();
 	var strengthSelect=$("#strength");
@@ -170,7 +197,13 @@ function stepTwoSubmission() {
 	
 	preparationBox="Add "+actualVol+ " mL ("+actualAmount+" mg) of "+drugName+" ("+ampDescription+") to "+diluentVol+" mL of "+infusionFluid+ "\nThis wil give "+syringeVol+ " mL of a "+solutionConc+" mg/mL ("+solutionConc*1000+" micrograms/mL) solution of "+drugName;
 	
+	if(alwaysStable > 0){
+		stabilityDuration=standardStability;
+		stabilityBox="This infusion has a "+standardStabilityHour+"-hour stability";
+		$("#stabilityRep").removeAttr("class","warning");
+	}
 	
+	else
 	
 	if(solutionConc>stabThreshold){
 		stabilityDuration=0;
