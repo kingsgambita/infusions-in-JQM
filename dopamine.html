@@ -37,7 +37,7 @@
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"></script>
  <script type="text/javascript" src="js/dopamine.js"></script>
-
+ <script type="text/javascript" src="js/infusions.js"></script>
 <HTML>
 <HEAD>
 <TITLE>C&amp;C DHB Neonatal Unit</TITLE>
@@ -65,7 +65,7 @@
 			<div class="ui-grid-b">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a"  style="height:80px" class="errorProne"><div class="ui-field-contain" >
 			    <label for="surName">Name:</label>
-			    <input name="surName" id="surName" placeholder="Name" value=""autocomplete="off" minlength="2" type="text" />
+			    <input onkeyup="setInfusionValues()"name="surName" id="surName" placeholder="Name" value=""autocomplete="off" minlength="2" type="text" />
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:80px" class="errorProne"><div class="ui-field-contain">
 			    <label for="NHI">NHI:</label>
@@ -304,7 +304,7 @@
             <h3 style="float: left; margin-top: 8px;">
                 <p>
                     <strong>Wellington NICU Infusion Calculators </strong><br>
-                    Version 2.01<br>
+                    Version 2.02<br>
                     <a href="mailto:michael.hewson@ccdhb.org.nz" data-role="button" data-icon="mail">Report a problem...</a>
             </h3>
             <p style="clear: both; font-size: 85%; margin-bottom: 8px;">

@@ -7,6 +7,7 @@ var ampVolume=1;	//drug ampoule volume
 var ampVolUnits="mL"; //units of ampoule volume
 var ampAmount=1;	//amount of drug in ampoule
 var ampAmtUnits="mg";	//units of mass of ampoule drug amount
+var amtUnitThousandth="micrograms";	//the mass unit = to 1/1000 of ampAmtUnits
 var alwaysStable=1;		//if no stability implications set value to 1. Otherwise 0. If = 1 this will bypass the stability calculations and return a standard message to stabilityBox
 
 var stabThreshold;	//stability threshold in mg/mL if known
@@ -14,11 +15,11 @@ var syringeVol=50;		//usually will be 50 mL
 var multiple = 3;
 var maxDoubleWeight = 6;	//the greatest weight for which double strength remains within the stability limits or otherwise permitted. Set to zero if double strength never permitted.
 var maxQuadWeight = 0;		//the greatest weight for which quad strength remains within the stability limits or otherwise permitted. set to zero if quad strength never allowed.
-var delBoxSingle= "0.1 mL/hour = 1 micrograms/kg/minute \n0.5 mL/hour = 5 micrograms/kg/minute \n1 mL/hour = 10 micrograms/kg/minute \n2 mL/hour = 20 micrograms/kg/minute";//the delivery results when single strength infusion selected
-var delBoxDouble= "0.1 mL/hour = 2 micrograms/kg/minute \n0.5 mL/hour = 10 micrograms/kg/minute \n1 mL/hour = 20 micrograms/kg/minute";
-var delBoxQuad= "0.1 mL/hour = 4 micrograms/kg/minute \n0.5 mL/hour = 20 micrograms/kg/minute";//the delivery results when quad strength infusion selected
+var delBoxSingle= "0.1 mL/hour = 0.1 micrograms/kg/minute \n0.5 mL/hour = 0.5 micrograms/kg/minute \n1 mL/hour = 1 microgram/kg/minute";//the delivery results when single strength infusion selected
+var delBoxDouble= "0.1 mL/hour = 0.2 micrograms/kg/minute \n0.5 mL/hour = 1 microgram/kg/minute";
+var delBoxQuad= "";//the delivery results when quad strength infusion selected
 var standardStability=2; //the number of days the solution is stable at standard concentration range
-var infusionValues = [{"Dextrose 5%": "Dextrose 5%", "Dextrose 10%": "Dextrose 10%","Normal Saline":"Normal Saline"}]; //the available infusion fluids for this drug, as an array with key and value. These will be loaded by the function setStrengthValues
+var infusionValues = [{"Dextrose 5%": "Dextrose 5%", "Dextrose 10%": "Dextrose 10%","Normal Saline":"Normal Saline"}]; //the available infusion fluids for this drug, as an array with key and value. These will be loaded by the function setInfusionValues
 var monograph="http://silentone/content/capitalDoc/310_Women_and_Children_s_Health/05_NICU/08_Drug_monographs/A_to_C/000000001862/__file__/000000001862.DOC";//link to monograph
 // Global calculated infusion variables
 
