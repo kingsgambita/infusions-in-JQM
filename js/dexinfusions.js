@@ -1,5 +1,8 @@
 
-
+function roundHalf(num) {
+    num = Math.round(num*2)/2;
+    return num;
+}
 
 function roundToTwo(num) {    
     return +(Math.round(num + "e+2")  + "e-2");
@@ -31,52 +34,7 @@ function setStrengthValues(){
 	
 	var weight = $('#weight').val();
 	var strengthSelect=$("#strength");
-	var selectValues = [{"single": "Single", "double": "Double", "quad": "Quad"}];
-
-    if (weight > maxDoubleWeight) {
-	 $("#strength").find('option').remove();
-     $(selectValues[0]).each(function (key, value) {
-         $.each(selectValues[0], function (key, value) {
-             strengthSelect
-			 .append($("<option></option>")
-			 .attr("value", key)
-			 .text(value));
-         });
-     });
-	strengthSelect.find('option:contains(' + selectValues[0].quad + ')').remove();
-	strengthSelect.find('option:contains(' + selectValues[0].double + ')').remove();		
-	strengthSelect.val('Single');
-	strengthSelect.selectmenu("refresh");		
-    } 
 	
-	else if (weight > maxQuadWeight) {
-	 $("#strength").find('option').remove();
-     $(selectValues[0]).each(function (key, value) {
-         $.each(selectValues[0], function (key, value) {
-             strengthSelect
-			 .append($("<option></option>")
-			 .attr("value", key)
-			 .text(value));
-         });
-     });
-	strengthSelect.find('option:contains(' + selectValues[0].quad + ')').remove();		
-	strengthSelect.val('Single');
-	strengthSelect.selectmenu("refresh");		
-    } 
-	
-	else {
-        $("#strength").find('option').remove();
-        $(selectValues[0]).each(function (key, value) {
-            $.each(selectValues[0], function (key, value) {
-            strengthSelect
-			 .append($("<option></option>")
-			 .attr("value", key)
-			 .text(value));
-         });
-     });
- 	strengthSelect.val('Single');
- 	strengthSelect.selectmenu("refresh");
-	}		
 };
 	
 	
@@ -117,39 +75,49 @@ function stepTwoSubmission() {
     $('#weight-rep').val(weightKg);
 	
 	var infusionFluid = $('#fluid').val();
-	$('#fluid-rep').val(infusionFluid);
+	var infusionFluidText=$( "#fluid option:selected" ).text();
+	syringeVol=infusionFluid;
+	
+	$('#fluid-rep').val(infusionFluidText);
 	
 	var infusionStrength = $('#strength').val();
 	
 	var infusionStrengthText=$( "#strength option:selected" ).text();
 	$('#strength-rep').val(infusionStrengthText);
 	
-	switch (infusionStrengthText){
-	case "Single":
-		strengthMultiple=1;
-		deliveryBox=delBoxSingle;
+	switch (infusionStrength<10){
+	case true:
+		actualVol=roundToOne((infusionStrength-5)*(infusionFluid/45));
+		secondaryFluid="Dextrose 5% (500 mL IV solution in viaflex bag)";
+		diluentVol=roundToOne(syringeVol-actualVol);
+		secondaryAmount=roundToTwo(diluentVol*5/100);
 		break;
-	case "Double":
-		strengthMultiple=2;
-		deliveryBox=delBoxDouble;
-		break;
-	case "Quad":
-		strengthMultiple=4;
-		deliveryBox=delBoxQuad;
+	case false:
+		actualVol = roundToOne((infusionStrength-10)*(infusionFluid/40));
+		secondaryFluid="Dextrose 10% (500 mL IV solution in viaflex bag)";
+		diluentVol=roundToOne(syringeVol-actualVol);
+		secondaryAmount=roundToTwo(diluentVol*10/100);	
 		break;
 	}
 	
 	targetAmount = roundToOne(weight*strengthMultiple*multiple);
-	actualVol = roundToOne(targetAmount/(ampAmount/ampVolume));	
 	actualAmount = roundToOne(ampAmount*actualVol/ampVolume);
 	diluentVol=roundToOne(syringeVol-actualVol);
-	solutionConc = roundToTwo(actualAmount/syringeVol);	
+	solutionConc = roundHalf((actualAmount+secondaryAmount)*100/syringeVol);	
 	
-	preparationBox="Add "+actualVol+ " mL ("+actualAmount+" "+ampAmtUnits+") of "+drugName+" ("+ampDescription+") to "+diluentVol+" mL of "+infusionFluid+ "\nThis will give "+syringeVol+ " mL of a "+solutionConc+" "+ampAmtUnits+ "/mL ("+solutionConc*1000+" "+amtUnitThousandth+"/mL) solution of "+drugName;
+	preparationBox="Add "+actualVol+ " mL ("+actualAmount+" "+ampAmtUnits+") of "+ampName+" ("+ampDescription+") to "+diluentVol+" mL of "+secondaryFluid+ "\nThis will give "+syringeVol+ " mL of a "+solutionConc+" % ("+solutionConc+" grams per 100 mL) solution of "+drugName;
 	
-	bolusBox="Bolus 50 micrograms/kg = "+roundToZero(weight*50)+" micrograms = "+roundToOne(((weight*50)/solutionConc)/1000)+" mL.\nBolus 100 micrograms/kg = "+roundToZero(weight*100)+" micrograms = "+roundToOne(((weight*100)/solutionConc)/1000)+" mL."
 	
-	;
+	switch (infusionStrength<14){
+	case true:
+		$("#dexWarn").attr("class","noPrint noScreen");
+		break;
+	case false:
+		$("#dexWarn").removeAttr("class","noPrint noScreen");
+		break;
+	}
+	
+	
 	
 	if(alwaysStable > 0){
 		stabilityDuration=standardStability;
@@ -171,7 +139,6 @@ $("#stabilityRep").removeAttr("class","warning");
 	
 	$('#prepRep').val(preparationBox);
 	$('#deliveryRep').val(deliveryBox);
-	$('#bolusRep').val(bolusBox);
 	$('#stabilityRep').val(stabilityBox);
 	$('#datePrep').val(datePrep);	
 	$('#dateExp').val(dateExp);
@@ -182,6 +149,7 @@ $("#stabilityRep").removeAttr("class","warning");
     $.mobile.pageContainer.pagecontainer("change", "#theReport");
 };
 };
+
 
 function dateFunction() {
 	var now     = new Date();
