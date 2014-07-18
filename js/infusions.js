@@ -128,14 +128,17 @@ function stepTwoSubmission() {
 	case "Single":
 		strengthMultiple=1;
 		deliveryBox=delBoxSingle;
+		$("#strength-rep").removeAttr("class","warning");//possibly responsible for issues with IE??
 		break;
 	case "Double":
 		strengthMultiple=2;
 		deliveryBox=delBoxDouble;
+		$("#strength-rep").attr("class","warning");
 		break;
 	case "Quad":
 		strengthMultiple=4;
 		deliveryBox=delBoxQuad;
+		$("#strength-rep").attr("class","warning");
 		break;
 	}
 	
@@ -173,6 +176,7 @@ $("#stabilityRep").removeAttr("class","warning");
 	$('#deliveryRep').val(deliveryBox);
 	$('#bolusRep').val(bolusBox);
 	$('#stabilityRep').val(stabilityBox);
+	$('#warningRep').val(warningBox);
 	$('#datePrep').val(datePrep);	
 	$('#dateExp').val(dateExp);
 	

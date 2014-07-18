@@ -17,6 +17,7 @@ div.errorProne{
 }
 
 body{
+	background:white;
 	font:9pt Arial, Georgia,"Times New Roman",Times, serif !important;
 	line-height:1.3 !important;
 }
@@ -61,7 +62,7 @@ h1{
 }
 
 fieldset.signCheck{
-	width:33%;
+	width:32%;
 	display:inline;
 	margin-top:10pt;
 }
@@ -107,4 +108,8 @@ input.sign{
     top: -1pt;
     *overflow: hidden;
 	
+}
+
+div#content { 
+	margin-left: 10%;
 }

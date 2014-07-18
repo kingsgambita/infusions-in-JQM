@@ -128,12 +128,15 @@ function stepTwoSubmission() {
 	switch (infusionStrengthText){
 	case "Single":
 		strengthMultiple=1;
+		$("#strength-rep").removeAttr("class","warning");
 		break;
 	case "Double":
 		strengthMultiple=2;
+		$("#strength-rep").attr("class","warning");
 		break;
 	case "Quad":
 		strengthMultiple=4;
+		$("#strength-rep").attr("class","warning");
 		break;
 	}
 	

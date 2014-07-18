@@ -36,8 +36,8 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"></script>
- <script type="text/javascript" src="js/dopamine.js"></script>
- <script type="text/javascript" src="js/infusions.js"></script>
+ <script type="text/javascript" src="js/prostaglandin.js"></script>
+ <script type="text/javascript" src="js/prostinfusions.js"></script>
 <HTML>
 <HEAD>
 <TITLE>C&amp;C DHB Neonatal Unit</TITLE>
@@ -54,7 +54,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepOne">
 
 	<div data-role="header">
-		<h1>Dopamine Infusions</h1>
+		<h1>Prostaglandin E1 Infusions</h1>
 		<a href="#about" data-icon="info" data-transition="slidedown" class="ui-btn-right"
 		        data-rel="dialog">About</a>
 	</div><!-- /header -->
@@ -104,7 +104,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepTwo">
 
 	<div data-role="header">
-		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dopamine Infusions</h1>
+		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Prostaglandin E1 Infusions</h1>
 		
 	</div><!-- /header -->
 
@@ -174,7 +174,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="theReport">
 
 	<div data-role="header">
-		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dopamine Infusion Preparation</h1>
+		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Prostaglandin E1 Infusion Preparation</h1>
 		<a class="noPrint" id="mono" href="" data-icon="info" target="_blank"class="ui-btn-right"
         data-rel="dialog">Monograph</a>
 	</div><!-- /header -->
@@ -224,7 +224,11 @@
 			
 	<form class="ui-body ui-body-a ui-corner-all">
 		<div class="ui-field-contain">
-		        <label for="prepRep">Preparation:</label>
+		        <label for="diluteRep">Preparation - Step One:</label>
+		        <textarea cols="40" rows="8" name="diluteRep" id="diluteRep"readonly="yes"></textarea>
+		    </div>
+		<div class="ui-field-contain">
+		        <label for="prepRep">Preparation - Step Two:</label>
 		        <textarea cols="40" rows="8" name="prepRep" id="prepRep"readonly="yes"></textarea>
 		    </div>
 		<div class="ui-field-contain">
@@ -233,7 +237,7 @@
 		    </div>
 		<div class="ui-field-contain">
 		        <label for="stabilityRep">Stability:</label>
-		        <textarea cols="40" rows="8" name="stabilityRep" id="stabilityRep"readonly="readonly"></textarea>
+		        <textarea cols="40" rows="1" name="stabilityRep" id="stabilityRep"readonly="readonly"></textarea>
 		    </div>
 		<div class="noScreen"><div class="ui-field-contain" >
 		        <label for="datePrep">Report Prepared:</label>

@@ -125,14 +125,17 @@ function stepTwoSubmission() {
 	case "Single":
 		strengthMultiple=1;
 		deliveryBox=delBoxSingle;
+		$("#strength-rep").removeAttr("class","warning");
 		break;
 	case "Double":
 		strengthMultiple=2;
 		deliveryBox=delBoxDouble;
+		$("#strength-rep").attr("class","warning");
 		break;
 	case "Quad":
 		strengthMultiple=4;
 		deliveryBox=delBoxQuad;
+		$("#strength-rep").attr("class","warning");
 		break;
 	}
 	
@@ -165,6 +168,7 @@ $("#stabilityRep").removeAttr("class","warning");
 	$('#prepRep').val(preparationBox);
 	$('#deliveryRep').val(deliveryBox);
 	$('#stabilityRep').val(stabilityBox);
+	$('#warningRep').val(warningBox);
 	$('#datePrep').val(datePrep);	
 	$('#dateExp').val(dateExp);
 	

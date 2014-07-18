@@ -1,4 +1,4 @@
-//modified to manage the two different infusion stability lengths for midazolam
+
 
 
 function roundToTwo(num) {    
@@ -9,6 +9,9 @@ function roundToOne(num) {
     return +(Math.round(num + "e+1")  + "e-1");
 }
 
+function roundToZero(num) {    
+    return +(Math.round(num + "e+0")  + "e-0");
+}
 function setInfusionValues(){
 	var infusionSelect=$("#fluid");
 	
@@ -125,17 +128,14 @@ function stepTwoSubmission() {
 	case "Single":
 		strengthMultiple=1;
 		deliveryBox=delBoxSingle;
-		$("#strength-rep").removeAttr("class","warning");
 		break;
 	case "Double":
 		strengthMultiple=2;
 		deliveryBox=delBoxDouble;
-		$("#strength-rep").attr("class","warning");
 		break;
 	case "Quad":
 		strengthMultiple=4;
 		deliveryBox=delBoxQuad;
-		$("#strength-rep").attr("class","warning");
 		break;
 	}
 	
@@ -145,7 +145,18 @@ function stepTwoSubmission() {
 	diluentVol=roundToOne(syringeVol-actualVol);
 	solutionConc = roundToTwo(actualAmount/syringeVol);	
 	
-	preparationBox="Add "+actualVol+ " mL ("+actualAmount+" "+ampAmtUnits+") of "+drugName+" ("+ampDescription+") to "+diluentVol+" mL of "+infusionFluid+ "\nThis wil give "+syringeVol+ " mL of a "+solutionConc+" "+ampAmtUnits+ "/mL ("+solutionConc*1000+" "+amtUnitThousandth+"/mL) solution of "+drugName;
+	preparationBox="Add "+actualVol+ " mL ("+actualAmount+" "+ampAmtUnits+") of this new "+drugName+" ("+ampDescription+") to "+diluentVol+" mL of "+infusionFluid+ "\nThis will give "+syringeVol+ " mL of a "+solutionConc+" "+ampAmtUnits+ "/mL solution of "+drugName;
+	
+	bolusBox="Bolus 50 micrograms/kg = "+roundToZero(weight*50)+" micrograms = "+roundToOne(((weight*50)/solutionConc)/1000)+" mL.\nBolus 100 micrograms/kg = "+roundToZero(weight*100)+" micrograms = "+roundToOne(((weight*100)/solutionConc)/1000)+" mL.";
+	
+	if(weight > 3.349){
+		diluteBox="Break open two ampoules of Prostaglandin E1 (500 micrograms in 1 mL) and withdraw 2 mL (1000 micrograms) using a filter needle. Dilute with 18 mL of "+infusionFluid+" to give 20 mL of a 50 microgram/mL solution.";
+	}
+	else{
+		diluteBox="Break open one ampoule of Prostaglandin E1 (500 micrograms in 1 mL) and withdraw 1 mL (500 micrograms) using a filter needle. Dilute with 9 mL of "+infusionFluid+" to give 10 mL of a 50 microgram/mL solution.";
+	}
+	
+	
 	
 	if(alwaysStable > 0){
 		stabilityDuration=standardStability;
@@ -156,17 +167,18 @@ function stepTwoSubmission() {
 	else
 	
 	if(solutionConc>stabThreshold){
-		stabilityDuration=1;
-		stabilityBox="This infusion has a concentration of "+solutionConc+ " "+ampAmtUnits+"/mL which is greater than the 48-hour stability threshold of "+stabThreshold+" "+ampAmtUnits+"/mL.\nThe infusion has a 24-hour stability.";
-	}
+		stabilityDuration=0;
+		stabilityBox="This infusion has a concentration of "+solutionConc+ " "+ampAmtUnits+"/mL which is greater than the stability threshold of "+stabThreshold+" "+ampAmtUnits+"/mL.\nThe infusion is unstable and MUST NOT be used without discussion with SMO and/or Pharmacist.";
+		$("#stabilityRep").attr("class","warning");}
 		else{
 		stabilityDuration=standardStability;	
-stabilityBox="This infusion has a concentration of "+solutionConc+ " "+ampAmtUnits+"/mL which is not greater than the 48-hour stability threshold of "+stabThreshold+" "+ampAmtUnits+"/mL.\nThe infusion has a "+standardStabilityHour+"-hour stability";
+stabilityBox="This infusion has a concentration of "+solutionConc+ " "+ampAmtUnits+"/mL which is not greater than the stability threshold of "+stabThreshold+" "+ampAmtUnits+"/mL.\nThe infusion has a "+standardStabilityHour+"-hour stability";
 $("#stabilityRep").removeAttr("class","warning");
 }
-	
+	$('#diluteRep').val(diluteBox);
 	$('#prepRep').val(preparationBox);
 	$('#deliveryRep').val(deliveryBox);
+	$('#bolusRep').val(bolusBox);
 	$('#stabilityRep').val(stabilityBox);
 	$('#datePrep').val(datePrep);	
 	$('#dateExp').val(dateExp);

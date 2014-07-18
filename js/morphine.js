@@ -30,6 +30,7 @@ var actualVol;	//(targetAmount/(ampAmount/ampVolume)) rounded to 1 decimal place
 var diluentVol;	//(syringeVol-actualVol) rounded to 1 decimal place
 var preparationBox; //the message in the report re preparation
 var deliveryBox;	//the message in the report re delivery
+var warningBox;
 var bolusBox;		//the message in the report re bolus delivery
 var solutionConc;	//calculated drug concentration in syringe
 var stabilityBox;//the message in the report re stability
