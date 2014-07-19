@@ -168,6 +168,7 @@ $("#stabilityRep").removeAttr("class","warning");
 	$('#prepRep').val(preparationBox);
 	$('#deliveryRep').val(deliveryBox);
 	$('#stabilityRep').val(stabilityBox);
+	$('#warningRep').val(warningBox);
 	$('#datePrep').val(datePrep);	
 	$('#dateExp').val(dateExp);
 	
