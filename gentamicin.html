@@ -33,13 +33,15 @@
    
 	<link rel="stylesheet" href="css/infusion.css" media="screen" />
 	<link rel="stylesheet" href="css/infusionPrint.css" media="print"/>
+	<link rel="stylesheet" type="text/css" href="http://cdn.jtsage.com/datebox/latest/jqm-datebox.min.css" />
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"></script>
- <script type="text/javascript" src="js/adrenaline.js"></script>
- <script type="text/javascript" src="js/adreninfusions.js"></script>
-
+<script type="text/javascript" src="http://cdn.jtsage.com/datebox/latest/jqm-datebox.core.min.js"></script>
+<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
+ <script type="text/javascript" src="js/gentamicin.js"></script>
+ <script type="text/javascript" src="js/gentprep.js"></script>
 <HTML>
 <HEAD>
 <TITLE>C&amp;C DHB Neonatal Unit</TITLE>
@@ -56,7 +58,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepOne">
 
 	<div data-role="header">
-		<h1>Adrenaline Infusions</h1>
+		<h1>Gentamicin Dosing</h1>
 		<a href="#about" data-icon="info" data-transition="slidedown" class="ui-btn-right"
 		        data-rel="dialog">About</a>
 	</div><!-- /header -->
@@ -78,6 +80,25 @@
 			    <input onkeyup="setStrengthValues()" name="weight" id="weight" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required>
 			</div></div></div>
 			</div><!-- /grid-b -->
+			<div class="ui-grid-a">
+			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
+			    <label for="fluid">Gestation at Birth:</label>
+			    <select name="fluid" id="fluid" placeholder="Select Infusion Fluid" value=""data-native-menu="false">
+					<option value="Dextrose 5%">Dextrose 5%</option>
+					<option value="Dextrose 10%">Dextrose 10%</option>
+					<option value="Normal Saline">Normal Saline</option>
+				</select>
+			</div></div></div>
+			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
+			    <label for="dob">DOB:</label>
+			   <input type="text" id="dob"
+			   data-role="datebox" data-theme="a" data-options='{"mode":"calbox","overrideDateFormat":"%d %b %Y"}'>
+			</div></div></div>
+			    
+			</div><!-- /grid-a -->
+			
+			
+			
 			
 
 			<p></p>
@@ -102,73 +123,6 @@
 	</div><!-- /footer -->
 </div><!-- /page -->
 
-<!-- Start of second page -->
-<div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepTwo">
-
-	<div data-role="header">
-		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Adrenaline Infusions</h1>
-		
-	</div><!-- /header -->
-
-	<div data-role="content">	
-		
-		
-			<div class="ui-grid-b">
-			    <div class="ui-block-a"><div class="ui-bar ui-bar-a"  style="height:80px" class="errorProne"><div class="ui-field-contain" >
-			    <label for="nameTwo">Name:</label>
-			    <input name="nameTwo" id="nameTwo" placeholder="Name" value=""autocomplete="off" minlength="2" type="text" readonly="readonly"disabled="true"/>
-			</div></div></div>
-			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:80px" class="errorProne"><div class="ui-field-contain">
-			    <label for="nhiTwo">NHI:</label>
-			    <input name="nhiTwo" id="nhiTwo" autocomplete="off" placeholder="NHI" value="" type="text" readonly="readonly"disabled="true"/>
-			</div></div></div>
-			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:80px"class="errorProne"><div class="ui-field-contain">
-			    <label for="weightTwo">Weight:</label>
-			    <input name="weightTwo" id="weightTwo" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required readonly="readonly"disabled="true"/>
-			</div></div></div>
-			</div><!-- /grid-b -->
-			<form id="formStepTwo" name="formStepTwo" method="post"data-ajax="false">
-			
-			<div class="ui-grid-a">
-			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
-			    <label for="fluid">Infusion Fluid:</label>
-			    <select name="fluid" id="fluid" placeholder="Select Infusion Fluid" value=""data-native-menu="false">
-					<option value="Dextrose 5%">Dextrose 5%</option>
-					<option value="Dextrose 10%">Dextrose 10%</option>
-					<option value="Normal Saline">Normal Saline</option>
-				</select>
-			</div></div></div>
-			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
-			    <label for="strength">Strength:</label>
-			    <select name="strength" id="strength" placeholder="Select Infusion Strength" data-native-menu="false" value="">
-						<option value=single>Single</option>
-						<option value=double>Double</option>
-						<option value=quad>Quad</option>
-					</select>
-			</div></div></div>
-			    
-			</div><!-- /grid-a -->
-			<p></p>
-			<div class="ui-grid-a">
-				<div class="ui-block-a"><input type="reset" id="reset" name="reset"value="Reset" data-icon="back"data-theme="a"data-iconpos="right"/></div>
-			
-			    <div class="ui-block-b"><a data-role="button" onclick="stepTwoSubmission();" data-theme="a">Prepare Report</a></div>
-		</div>
-			
-			
-			
-			
-		</form>
-					
-		
-				
-					
-	</div><!-- /content -->
-
-	<div data-role="footer">
-		<h4>CCDHB</h4>
-	</div><!-- /footer -->
-</div><!-- /page -->
 
 
 
@@ -176,7 +130,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="theReport">
 
 	<div data-role="header">
-		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Adrenaline Infusion Preparation</h1>
+		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Gentamicin Dosing</h1>
 		<a class="noPrint" id="mono" href="" data-icon="info" target="_blank"class="ui-btn-right"
         data-rel="dialog">Monograph</a>
 	</div><!-- /header -->
@@ -237,12 +191,6 @@
 		        <label for="stabilityRep">Stability:</label>
 		        <textarea cols="40" rows="8" name="stabilityRep" id="stabilityRep"readonly="readonly"></textarea>
 		    </div>
-			
-		<div id="adrenalinWarn"><div class="ui-field-contain">
-		        <label class="warning"for="warningRep">Warning:</label>
-		        <textarea cols="40" rows="2"class="warning" name="warningRep" id="warningRep"readonly="readonly"></textarea>
-		    </div></div>	
-		
 		<div class="noScreen"><div class="ui-field-contain" >
 		        <label for="datePrep">Report Prepared:</label>
 		        <textarea cols="40" rows="1" name="datePrep" id="datePrep"readonly="readonly"></textarea>
