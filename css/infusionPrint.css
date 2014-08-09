@@ -12,6 +12,10 @@ div.errorProne{
 #nhiTwo{text-transform:uppercase}
 #nhi-rep{text-transform:uppercase}
 
+.noScreenorPrint{
+	display:none;
+}
+
 .noPrint{
 	display:none !important;
 }

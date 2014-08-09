@@ -31,55 +31,48 @@ function stepOneSubmission() {
     var weight = $('#weight').val();
 	var weightKg = (weight+" kg");
     $('#weight-rep').val(weightKg);
-   
 	
-	var weeks = $('#weeks').val();
-	var weekDays = weeks*7;
-	var plusDays = $('#plusDays').val();
+	var bolus = $('#bolus').val();
+	var dose = roundToOne(bolus*weight);
 	
-	//need a function to make sure plusDays = 0 if not greater than zero
-	var gestDays = (parseInt(weekDays)+parseInt(plusDays));
-	var ga = (weeks.toString()+" weeks + "+plusDays.toString()+" days");
-	$('#ga-rep').val(ga);
-	var dob = $('#dob').val();
-	$('#dob-rep').val(dob);
+	var doseVol = roundToTwo(dose/1000);
+	var actualDose = doseVol*1000;
+	var diffDose = dose-actualDose;
+	if (diffDose===0){
+		calcRepRound=""
+	}
+	else{
+		calcRepRound="\nDue to rounding, prescribe "+actualDose+" micrograms morphine"
+	}
 	
-	var dobDate=$('#dob').datebox('getTheDate');
-	var dobDate_ms = dobDate.getTime();
-	  
-	var now = new Date();
-	var now_ms = now.getTime();
-	var postnatalAge_ms = (now_ms-dobDate_ms);
-	var postnatalAge_days = Math.floor(postnatalAge_ms/(1000*60*60*24));
-	var correctedDays = (postnatalAge_days + gestDays);
-	var correctedWeeks = Math.floor(correctedDays/7);
-	var correctedPlusDays = (correctedDays-(correctedWeeks*7));
-	//var cga = correctedDays;
 	
-	var cga = "The corrected gestational age is "+correctedWeeks.toString()+" weeks + "+correctedPlusDays.toString()+" days. \n";
-	$('#corrected-rep').val(cga);
+	var doseBox="Draw  "+doseVol+" ml of this 1 mg/mL solution in a 1ml syringe and dilute to 0.5 ml with normal saline (in a 3ml syringe)";
 	
-	var dose;
-	var doseBox;
-	var calcRep;
+	var calcRep=bolus+" micrograms/kg = "+dose+" micrograms morphine."+calcRepRound;
 	var finalDose;
-	if(correctedDays>287&&postnatalAge_days>28){doseBox=doseBoxE;}
-	else if(correctedDays>266&&postnatalAge_days>7){dose=7.5;doseBox=doseBoxA;}
-	else if (correctedDays>259){dose=5;doseBox=doseBoxB;}
-	else if (correctedDays>209){dose=3.5;doseBox=doseBoxC;}
-	else {dose=2.5;doseBox=doseBoxD;}
-	
-	calcRep = cga+doseBox;
 	
 	var dosePerKg=roundToOne(dose*weight);
 	
-	if (correctedDays>287&&postnatalAge_days>28){finalDose="see above";}
-	else {finalDose="Gentamicin "+dosePerKg+ " mg every 24 hours, IV.";}
+	switch (doseVol<0.1){
+	case (true):
+		$("#morphWarn").removeAttr("class","noScreenorPrint");
+		break;
+	case (false):
+		$("#morphWarn").attr("class","noScreenorPrint");
+		break;
 	
-   
+	}
+	
+	
 	$('#calcRep').val(calcRep);
-	$('#doseRep').val(finalDose);
+	$('#prepRep').val(stepOne);
+	$('#doseRep').val(doseBox);
 	$('#noteRep').val(note);
+	$('#warningRep').val(warningBox);
+	
+	
+	
+	
     $.mobile.pageContainer.pagecontainer("change", "#theReport");
 };
 };

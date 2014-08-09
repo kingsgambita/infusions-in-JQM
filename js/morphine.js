@@ -30,7 +30,7 @@ var actualVol;	//(targetAmount/(ampAmount/ampVolume)) rounded to 1 decimal place
 var diluentVol;	//(syringeVol-actualVol) rounded to 1 decimal place
 var preparationBox; //the message in the report re preparation
 var deliveryBox;	//the message in the report re delivery
-var warningBox;
+var warningBox="Caution: risk of 10-fold error. Volume to draw from ampoule is less than 0.1 mL";
 var bolusBox;		//the message in the report re bolus delivery
 var solutionConc;	//calculated drug concentration in syringe
 var stabilityBox;//the message in the report re stability

@@ -1,5 +1,7 @@
 
-
+function roundToThree(num) {    
+    return +(Math.round(num + "e+3")  + "e-3");
+}
 
 function roundToTwo(num) {    
     return +(Math.round(num + "e+2")  + "e-2");
@@ -124,7 +126,7 @@ function stepTwoSubmission() {
 	var infusionStrengthText=$( "#strength option:selected" ).text();
 	$('#strength-rep').val(infusionStrengthText);
 	
-	switch (infusionStrengthText){
+	switch (infusionStrengthText){	// places the correct delivery text depecding on strength, and adds warning class if not single - which currently has the effect of making stregth field bold and red text. 
 	case "Single":
 		strengthMultiple=1;
 		deliveryBox=delBoxSingle;
@@ -142,8 +144,14 @@ function stepTwoSubmission() {
 		break;
 	}
 	
-	targetAmount = roundToOne(weight*strengthMultiple*multiple);
-	actualVol = roundToOne(targetAmount/(ampAmount/ampVolume));	
+	targetAmount = roundToTwo(weight*strengthMultiple*multiple);
+	
+	if (targetAmount>(ampAmount/ampVolume)){		//when the target amount is more than one millilitre worth of drug, the rounding of actualVol is only to one decimal place
+		actualVol = roundToOne(targetAmount/(ampAmount/ampVolume));	
+	}
+	else{actualVol = roundToTwo(targetAmount/(ampAmount/ampVolume));}//otherwise it is rounded to two decimal places
+	
+	
 	actualAmount = roundToOne(ampAmount*actualVol/ampVolume);
 	diluentVol=roundToOne(syringeVol-actualVol);
 	solutionConc = roundToTwo(actualAmount/syringeVol);	

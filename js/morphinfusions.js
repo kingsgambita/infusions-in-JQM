@@ -35,7 +35,7 @@ function setStrengthValues(){
 	var strengthSelect=$("#strength");
 	var selectValues = [{"single": "Single", "double": "Double", "quad": "Quad"}];
 
-    if (weight > maxDoubleWeight) {
+    if (weight > maxDoubleWeight) {//clean out the strength options then add in those from the strengthValues array
 	 $("#strength").find('option').remove();
      $(selectValues[0]).each(function (key, value) {
          $.each(selectValues[0], function (key, value) {
@@ -45,8 +45,8 @@ function setStrengthValues(){
 			 .text(value));
          });
      });
-	strengthSelect.find('option:contains(' + selectValues[0].quad + ')').remove();
-	strengthSelect.find('option:contains(' + selectValues[0].double + ')').remove();		
+	strengthSelect.find('option:contains(' + selectValues[0].quad + ')').remove();//then remove quad
+	strengthSelect.find('option:contains(' + selectValues[0].double + ')').remove();	//then remove double	
 	strengthSelect.val('Single');
 	strengthSelect.selectmenu("refresh");		
     } 
@@ -61,13 +61,13 @@ function setStrengthValues(){
 			 .text(value));
          });
      });
-	strengthSelect.find('option:contains(' + selectValues[0].quad + ')').remove();		
+	strengthSelect.find('option:contains(' + selectValues[0].quad + ')').remove();		//now only quad gets removed
 	strengthSelect.val('Single');
 	strengthSelect.selectmenu("refresh");		
     } 
 	
 	else {
-        $("#strength").find('option').remove();
+        $("#strength").find('option').remove();		//now all get removed, then reinserted
         $(selectValues[0]).each(function (key, value) {
             $.each(selectValues[0], function (key, value) {
             strengthSelect
@@ -126,7 +126,7 @@ function stepTwoSubmission() {
 	var infusionStrengthText=$( "#strength option:selected" ).text();
 	$('#strength-rep').val(infusionStrengthText);
 	
-	switch (infusionStrengthText){
+	switch (infusionStrengthText){	// places the correct delivery text depecding on strength, and adds warning class if not single - which currently has the effect of making stregth field bold and red text. 
 	case "Single":
 		strengthMultiple=1;
 		deliveryBox=delBoxSingle;
@@ -145,14 +145,35 @@ function stepTwoSubmission() {
 	}
 	
 	targetAmount = roundToTwo(weight*strengthMultiple*multiple);
-	actualVol = roundToTwo(targetAmount/(ampAmount/ampVolume));	
+	if (targetAmount>(ampAmount/ampVolume)){		//when the target amount is more than one millilitre worth of drug, the rounding of actualVol is only to one decimal place
+		actualVol = roundToOne(targetAmount/(ampAmount/ampVolume));	
+	}
+	else{actualVol = roundToTwo(targetAmount/(ampAmount/ampVolume));}//otherwise it is rounded to two decimal places
+	
+	
 	actualAmount = roundToTwo(ampAmount*actualVol/ampVolume);
 	diluentVol=roundToOne(syringeVol-actualVol);
-	solutionConc = roundToThree(actualAmount/syringeVol);	
+	solutionConc = roundToThree(actualAmount/syringeVol);
+	
+	switch (actualVol<0.1){		//when the actualVol drawn from ampoule is less than 0.1 mL, a warning field is added to reports to warn about risk of 10 fold error
+	case (true):
+		$("#morphWarn").removeAttr("class","noScreenorPrint");
+		break;
+	case (false):
+		$("#morphWarn").attr("class","noScreenorPrint");
+		break;
+	}
+	
+	
+		
 	
 	preparationBox="Add "+actualVol+ " mL ("+actualAmount+" "+ampAmtUnits+") of "+drugName+" ("+ampDescription+") to "+diluentVol+" mL of "+infusionFluid+ "\nThis will give "+syringeVol+ " mL of a "+solutionConc+" "+ampAmtUnits+ "/mL ("+solutionConc*1000+" "+amtUnitThousandth+"/mL) solution of "+drugName;
 	
-	bolusBox="Bolus 50 micrograms/kg = "+roundToZero(weight*50)+" micrograms = "+roundToOne(((weight*50)/solutionConc)/1000)+" mL\nBolus 100 micrograms/kg = "+roundToZero(weight*100)+" micrograms = "+roundToOne(((weight*100)/solutionConc)/1000)+" mL"
+	
+	bolus50Vol=roundToOne(((weight*50)/solutionConc)/1000);//the volume of a 50 microgram per kg bolus
+	bolus100Vol=roundToOne(((weight*100)/solutionConc)/1000);//the volume of a 100 microgram per kg bolus
+	
+	bolusBox="Bolus 50 micrograms/kg (after rounding) = "+roundToZero(bolus50Vol*solutionConc*1000)+" micrograms = "+bolus50Vol+" mL\nBolus 100 micrograms/kg (after rounding) = "+roundToZero(bolus100Vol*solutionConc*1000)+" micrograms = "+bolus100Vol+" mL"
 	
 	;
 	

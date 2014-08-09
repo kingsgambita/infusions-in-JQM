@@ -1,7 +1,7 @@
 
 // Global pre-defined infusion variables
 
-var drugName = "Gentamicin";
+var drugName = "Morphine";
 var drugPurpose;	//only used where drug calculations differ according to purpose eg insulin
 var ampVolume;	//drug ampoule volume
 var ampVolUnits; //units of ampoule volume
@@ -24,7 +24,7 @@ var delBoxDouble;
 var delBoxQuad;//the delivery results when quad strength infusion selected
 var standardStability; //the number of days the solution is stable at standard concentration range
 var infusionValues; //the available infusion fluids for this drug, as an array with key and value. These will be loaded by the function setInfusionValues
-var monograph="http://silentone/content/capitalDoc/310_Women_and_Children_s_Health/05_NICU/08_Drug_monographs/G_to_K/000000001824/__file__/000000001824.DOC";//link to monograph
+var monograph="http://silentone/content/capitalDoc/310_Women_and_Children_s_Health/05_NICU/08_Drug_monographs/L_to_N/000000001806/__file__/000000001806.DOC";//link to monograph
 // Global calculated infusion variables
 
 var ampDescription = ampAmount+" "+ampAmtUnits+" in " +ampVolume+ " "+ampVolUnits;
@@ -35,8 +35,8 @@ var actualVol;	//(targetAmount/(ampAmount/ampVolume)) rounded to 1 decimal place
 var diluentVol;	//(syringeVol-actualVol) rounded to 1 decimal place
 var preparationBox; //the message in the report re preparation
 var deliveryBox;	//the message in the report re delivery
-var warningBox;
-var note="Infants with significant renal impairment eg due to hypoxic injury or shock may require use of an alternative antibiotic. In more mild renal impairment eg with use of indomethacin, a longer dosage interval may be needed.\nAim for trough level < 1 mg/L.";
+var warningBox="Caution: risk of 10-fold error. Volume to draw at Step Two is less than 0.1 mL";
+var note = "Administer this 0.5 mL as slow IV push over 5 – 10 minutes followed by saline flush ie Morphine together with flush should not be administered faster than over 5 – 10 minutes";
 var solutionConc;	//calculated drug concentration in syringe
 var stabilityBox;//the message in the report re stability
 var datePrep;//the time and date of report preparation
@@ -45,5 +45,6 @@ var stabilityDuration=4; //the calculated stability in days of the solution once
 var standardStabilityHour=standardStability*24; //the number of hours the solution is stable at standard concentration range
 var stable;//boolean expression of stability
 var solutionDescription; //a variable which is not used but could be - to concatenate the description assembled for the prep report
+var stepOne = "Draw up 1 mL Morphine (10 mg/ml ampoule) and 9 ml NaCl into a 10 mL syringe to give a total volume 10 ml. The morphine concentration in the 10 ml syringe is now 10 mg in 10 ml = 1 mg/ml = 1000 micrograms/ml";
 
 

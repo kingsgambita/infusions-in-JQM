@@ -69,7 +69,7 @@
 			<div class="ui-grid-b">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a"  style="height:80px" class="errorProne"><div class="ui-field-contain" >
 			    <label for="surName">Name:</label>
-			    <input onkeyup="setInfusionValues()"name="surName" id="surName" placeholder="Name" value=""autocomplete="off" minlength="2" type="text" />
+			    <input name="surName" id="surName" placeholder="Name" value=""autocomplete="off" minlength="2" type="text" />
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:80px" class="errorProne"><div class="ui-field-contain">
 			    <label for="NHI">NHI:</label>
@@ -77,22 +77,63 @@
 			</div></div></div>
 			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:80px"class="errorProne"><div class="ui-field-contain">
 			    <label for="weight">Wt (kg):</label>
-			    <input onkeyup="setStrengthValues()" name="weight" id="weight" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required>
+			    <input name="weight" id="weight" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required>
 			</div></div></div>
 			</div><!-- /grid-b -->
 			<div class="ui-grid-a">
-			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
-			    <label for="fluid">Gestation at Birth:</label>
-			    <select name="fluid" id="fluid" placeholder="Select Infusion Fluid" value=""data-native-menu="false">
-					<option value="Dextrose 5%">Dextrose 5%</option>
-					<option value="Dextrose 10%">Dextrose 10%</option>
-					<option value="Normal Saline">Normal Saline</option>
-				</select>
-			</div></div></div>
-			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
+			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:80px">
+					<div class="ui-field-contain">
+					    <fieldset data-role="controlgroup" data-type="horizontal">
+					        <legend>Gestation at birth:</legend>
+					        <label for="weeks">Weeks</label>
+					        <select name="weeks" id="weeks" >
+					            <option value="0">Weeks:</option>
+								<option value="22">22 weeks</option>
+					            <option value="23">23 weeks</option>
+					            <option value="24">24 weeks</option>
+								<option value="25">25 weeks</option>
+					            <option value="26">26 weeks</option>
+					            <option value="27">27 weeks</option>
+								<option value="28">28 weeks</option>
+					            <option value="29">29 weeks</option>
+					            <option value="30">30 weeks</option>
+								<option value="31">31 weeks</option>
+					            <option value="32">32 weeks</option>
+					            <option value="33">33 weeks</option>
+					            <option value="34">34 weeks</option>
+								<option value="35">35 weeks</option>
+					            <option value="36">36 weeks</option>
+								<option value="37">37 weeks</option>
+					            <option value="38">38 weeks</option>
+					            <option value="39">39 weeks</option>
+					            <option value="40">40 weeks</option>
+								<option value="41">41 weeks</option>
+					            <option value="42">42 weeks</option>
+					           
+								
+					        </select>
+					        <label for="plusDays">Two</label>
+					        <select name="plusDays" id="plusDays">
+								 <option value="0">Days:</option>
+					            <option value="0">0 days</option>
+					            <option value="1">1 day</option>
+					            <option value="2">2 days</option>
+					            <option value="3">3 days</option>
+					            <option value="4">4 days</option>
+					            <option value="5">5 days</option>
+								<option value="6">6 days</option>
+					        </select>
+					        
+					    </fieldset>
+					</div>
+					
+					
+					
+			</div></div>
+			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:80px"><div class="ui-field-contain"class="errorProne">
 			    <label for="dob">DOB:</label>
-			   <input type="text" id="dob"
-			   data-role="datebox" data-theme="a" data-options='{"mode":"calbox","overrideDateFormat":"%d %b %Y"}'>
+			   <input type="text" id="dob" required autocomplete="off"
+			   data-role="datebox" data-theme="a"  data-options='{"mode":"calbox","overrideDateFormat":"%d %b %Y","afterToday":false,"beforeToday":true,"maxDays": 1,"minDays":200 ,"enablePopup":true}'>
 			</div></div></div>
 			    
 			</div><!-- /grid-a -->
@@ -130,7 +171,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="theReport">
 
 	<div data-role="header">
-		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Gentamicin Dosing</h1>
+		<a class ="noPrint" href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Gentamicin Dosing</h1>
 		<a class="noPrint" id="mono" href="" data-icon="info" target="_blank"class="ui-btn-right"
         data-rel="dialog">Monograph</a>
 	</div><!-- /header -->
@@ -155,17 +196,22 @@
 			
 			<div class="ui-grid-a">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
-			    <label for="fluid-rep">Infusion Fluid:</label>
-			    <input name="fluid-rep" id="fluid-rep" placeholder="Infusion Fluid" value=""readonly="readonly">
+			    <label for="ga-rep">GA at birth:</label>
+			    <input name="ga-rep" id="ga-rep" placeholder="Gestation at birth" value=""readonly="readonly">
 					
 				</input>
 			</div></div></div>
+			   
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
-			    <label for="strength-rep">Strength:</label>
-			    <input name="strength-rep" id="strength-rep" placeholder="Infusion Strength" value=""readonly="readonly">
+			    <label for="dob-rep">DOB:</label>
+			    <input name="dob-rep" id="dob-rep" placeholder="Date of Birth" value=""readonly="readonly">
 					
 					</input>
 			</div></div></div>
+			
+			
+			
+			
 			    
 			</div><!-- /grid-a -->
 			<p></p>
@@ -180,16 +226,16 @@
 			
 	<form class="ui-body ui-body-a ui-corner-all">
 		<div class="ui-field-contain">
-		        <label for="prepRep">Preparation:</label>
-		        <textarea cols="40" rows="8" name="prepRep" id="prepRep"readonly="yes"></textarea>
+		        <label for="calcRep">Calculation:</label>
+		        <textarea cols="40" rows="3" name="calcRep" id="calcRep"readonly="yes"></textarea>
 		    </div>
 		<div class="ui-field-contain">
-		        <label for="deliveryRep">Delivery:</label>
-		        <textarea cols="40" rows="8" name="deliveryRep" id="deliveryRep"readonly="readonly"></textarea>
+		        <label for="doseRep">Dose:</label>
+		        <textarea cols="40" rows="3" name="doseRep" id="doseRep"readonly="readonly"></textarea>
 		    </div>
 		<div class="ui-field-contain">
-		        <label for="stabilityRep">Stability:</label>
-		        <textarea cols="40" rows="8" name="stabilityRep" id="stabilityRep"readonly="readonly"></textarea>
+		        <label for="noteRep">Note:</label>
+		        <textarea cols="40" rows="5" name="noteRep" id="noteRep"readonly="readonly"></textarea>
 		    </div>
 		<div class="noScreen"><div class="ui-field-contain" >
 		        <label for="datePrep">Report Prepared:</label>
@@ -209,7 +255,8 @@
 	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
 	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
 			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
-			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Infusion Strength</label>
+			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Gestation at Birth</label>
+			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Date of Birth</label>
 			<label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Matches Prescription</label>
 			<p></p>
 			<label class="sign"><input class="sign"data-role="none"/></label>
@@ -217,12 +264,13 @@
 	    </fieldset>
 		
 	    <fieldset class="signCheck"id="nurse1Check" data-role="none" data-iconpos="right" data-theme="a">
-	        <legend>Before preparing infusion:</legend>
+	        <legend>Before giving:</legend>
 			<p></p>
 	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
 	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
 			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
-			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Infusion Strength</label>
+			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Gestation at Birth</label>
+			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Date of Birth</label>
 			<label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Matches Prescription</label>
 			<p></p>
 			<label class="sign"><input class="sign"data-role="none"/></label>
@@ -230,12 +278,13 @@
 	    </fieldset>
 		
 	    <fieldset class="signCheck"id="nurse2Check" data-role="none" data-iconpos="right" data-theme="a">
-	        <legend>Before preparing infusion:</legend>
+	        <legend>Before giving:</legend>
 			<p></p>
 	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
 	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
 			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
-			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Infusion Strength</label>
+			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Gestation at Birth</label>
+			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Date of Birth</label>
 			<label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Matches Prescription</label>
 			<p></p>
 			<label class="sign"><input class="sign"data-role="none"/></label>
@@ -259,8 +308,8 @@
             
             <h3 style="float: left; margin-top: 8px;">
                 <p>
-                    <strong>Wellington NICU Infusion Calculators </strong><br>
-                    Version 2.04<br>
+                    <strong>Wellington NICU Gentamicin Calculator </strong><br>
+                    Version 1.00<br>
                     <a href="mailto:michael.hewson@ccdhb.org.nz" data-role="button" data-icon="mail">Report a problem...</a>
             </h3>
             <p style="clear: both; font-size: 85%; margin-bottom: 8px;">
@@ -298,12 +347,16 @@
     rules: {
 		surName:{required: true},
 		NHI:{required:true, maxlength:7,regex:true},
-		weight:{required:true,maxDecimal:true}
+		weight:{required:true,maxDecimal:true},
+		dob:{required:true},
+		weeks:{min:22},
     },
     messages: {
 		surName: "Name is required",
 		NHI:"Valid NHI required",
-		weight: "Weight is required: 0.3 - 6 kg"
+		weight: "Weight is required: 0.3 - 6 kg",
+		weeks: "Required"
+		
     }
 });
 

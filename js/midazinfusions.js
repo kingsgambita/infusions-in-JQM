@@ -139,11 +139,19 @@ function stepTwoSubmission() {
 		break;
 	}
 	
-	targetAmount = roundToOne(weight*strengthMultiple*multiple);
-	actualVol = roundToOne(targetAmount/(ampAmount/ampVolume));	
+	targetAmount = roundToTwo(weight*strengthMultiple*multiple);
+	
+	if (targetAmount>(ampAmount/ampVolume)){		//when the target amount is more than one millilitre worth of drug, the rounding of actualVol is only to one decimal place
+		actualVol = roundToOne(targetAmount/(ampAmount/ampVolume));	
+	}
+	else{actualVol = roundToTwo(targetAmount/(ampAmount/ampVolume));}//otherwise it is rounded to two decimal places
+	
+	
 	actualAmount = roundToOne(ampAmount*actualVol/ampVolume);
 	diluentVol=roundToOne(syringeVol-actualVol);
 	solutionConc = roundToTwo(actualAmount/syringeVol);	
+	
+	
 	
 	preparationBox="Add "+actualVol+ " mL ("+actualAmount+" "+ampAmtUnits+") of "+drugName+" ("+ampDescription+") to "+diluentVol+" mL of "+infusionFluid+ "\nThis wil give "+syringeVol+ " mL of a "+solutionConc+" "+ampAmtUnits+ "/mL ("+solutionConc*1000+" "+amtUnitThousandth+"/mL) solution of "+drugName;
 	

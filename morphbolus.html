@@ -33,12 +33,14 @@
    
 	<link rel="stylesheet" href="css/infusion.css" media="screen" />
 	<link rel="stylesheet" href="css/infusionPrint.css" media="print"/>
+	
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"></script>
- <script type="text/javascript" src="js/prostaglandin.js"></script>
- <script type="text/javascript" src="js/prostinfusions.js"></script>
+
+ <script type="text/javascript" src="js/morphbolus.js"></script>
+ <script type="text/javascript" src="js/morphprep.js"></script>
 <HTML>
 <HEAD>
 <TITLE>C&amp;C DHB Neonatal Unit</TITLE>
@@ -55,7 +57,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepOne">
 
 	<div data-role="header">
-		<h1>Prostaglandin E1 Infusions</h1>
+		<h1>Morphine Bolus from Ampoule</h1>
 		<a href="#about" data-icon="info" data-transition="slidedown" class="ui-btn-right"
 		        data-rel="dialog">About</a>
 	</div><!-- /header -->
@@ -66,7 +68,7 @@
 			<div class="ui-grid-b">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a"  style="height:80px" class="errorProne"><div class="ui-field-contain" >
 			    <label for="surName">Name:</label>
-			    <input onkeyup="setInfusionValues()"name="surName" id="surName" placeholder="Name" value=""autocomplete="off" minlength="2" type="text" />
+			    <input name="surName" id="surName" placeholder="Name" value=""autocomplete="off" minlength="2" type="text" />
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:80px" class="errorProne"><div class="ui-field-contain">
 			    <label for="NHI">NHI:</label>
@@ -74,84 +76,42 @@
 			</div></div></div>
 			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:80px"class="errorProne"><div class="ui-field-contain">
 			    <label for="weight">Wt (kg):</label>
-			    <input onkeyup="setStrengthValues()" name="weight" id="weight" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required>
+			    <input name="weight" id="weight" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required>
 			</div></div></div>
 			</div><!-- /grid-b -->
+			<div class="ui-grid-solo">
+			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:80px">
+					<div class="ui-field-contain">
+					   
 			
-
-			<p></p>
-			<div class="ui-grid-a">
-				<div class="ui-block-a"><input type="reset" id="reset" name="reset"value="Reset" data-icon="back"data-theme="a"data-iconpos="right"/></div>
-			
-			    <div class="ui-block-b"><a data-role="button" onclick="stepOneSubmission();" data-theme="a">Submit</a></div>
-		</div>
-			
-			
-			
-			
-		</form>
+					        <label for="bolus">Morphine Bolus Dose</label>
+					        <select name="bolus" id="bolus" data-native-menu="false" >
+					            <option value="0">Bolus Dose:</option>
+								<option value="50">50 micrograms/kg</option>
+					            <option value="100">100 micrograms/kg</option>
+					           		
+					        </select>
+					      
+					        
 					
-		
-				
+					</div>
 					
-	</div><!-- /content -->
-
-	<div data-role="footer">
-		<h4>CCDHB</h4>
-	</div><!-- /footer -->
-</div><!-- /page -->
-
-<!-- Start of second page -->
-<div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepTwo">
-
-	<div data-role="header">
-		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Prostaglandin E1 Infusions</h1>
-		
-	</div><!-- /header -->
-
-	<div data-role="content">	
-		
-		
-			<div class="ui-grid-b">
-			    <div class="ui-block-a"><div class="ui-bar ui-bar-a"  style="height:80px" class="errorProne"><div class="ui-field-contain" >
-			    <label for="nameTwo">Name:</label>
-			    <input name="nameTwo" id="nameTwo" placeholder="Name" value=""autocomplete="off" minlength="2" type="text" readonly="readonly"disabled="true"/>
-			</div></div></div>
-			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:80px" class="errorProne"><div class="ui-field-contain">
-			    <label for="nhiTwo">NHI:</label>
-			    <input name="nhiTwo" id="nhiTwo" autocomplete="off" placeholder="NHI" value="" type="text" readonly="readonly"disabled="true"/>
-			</div></div></div>
-			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:80px"class="errorProne"><div class="ui-field-contain">
-			    <label for="weightTwo">Weight:</label>
-			    <input name="weightTwo" id="weightTwo" min="0.3" max="6" placeholder="kg" value="" autocomplete="off" type="number"required readonly="readonly"disabled="true"/>
-			</div></div></div>
-			</div><!-- /grid-b -->
-			<form id="formStepTwo" name="formStepTwo" method="post"data-ajax="false">
-			
-			<div class="ui-grid-a">
-			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
-			    <label for="fluid">Infusion Fluid:</label>
-			    <select name="fluid" id="fluid" placeholder="Select Infusion Fluid" value=""data-native-menu="false">
-					<option value="Dextrose 5%">Dextrose 5%</option>
-					<option value="Dextrose 10%">Dextrose 10%</option>
-					<option value="Normal Saline">Normal Saline</option>
-				</select>
-			</div></div></div>
-			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
-			    <label for="strength">Strength:</label>
-			    <select name="strength" id="strength" placeholder="Select Infusion Strength" data-native-menu="false" value="">
-						<option value=single>Single</option>
-						<option value=double>Double</option>
-						<option value=quad>Quad</option>
-					</select>
-			</div></div></div>
+					
+					
+			</div></div>
+			    
 			    
 			</div><!-- /grid-a -->
+			
+			
+			
+			
+
 			<p></p>
 			<div class="ui-grid-a">
 				<div class="ui-block-a"><input type="reset" id="reset" name="reset"value="Reset" data-icon="back"data-theme="a"data-iconpos="right"/></div>
 			
-			    <div class="ui-block-b"><a data-role="button" onclick="stepTwoSubmission();" data-theme="a">Prepare Report</a></div>
+			    <div class="ui-block-b"><a data-role="button" onclick="stepOneSubmission();" data-theme="a">Prepare Report</a></div>
 		</div>
 			
 			
@@ -168,6 +128,7 @@
 		<h4>CCDHB</h4>
 	</div><!-- /footer -->
 </div><!-- /page -->
+
 
 
 
@@ -175,7 +136,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="theReport">
 
 	<div data-role="header">
-		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Prostaglandin E1 Infusion Preparation</h1>
+		<a class ="noPrint" href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Morphine Bolus Dosing</h1>
 		<a class="noPrint" id="mono" href="" data-icon="info" target="_blank"class="ui-btn-right"
         data-rel="dialog">Monograph</a>
 	</div><!-- /header -->
@@ -198,21 +159,7 @@
 			</div></div></div>
 			</div><!-- /grid-b -->
 			
-			<div class="ui-grid-a">
-			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
-			    <label for="fluid-rep">Infusion Fluid:</label>
-			    <input name="fluid-rep" id="fluid-rep" placeholder="Infusion Fluid" value=""readonly="readonly">
-					
-				</input>
-			</div></div></div>
-			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
-			    <label for="strength-rep">Strength:</label>
-			    <input name="strength-rep" id="strength-rep" placeholder="Infusion Strength" value=""readonly="readonly">
-					
-					</input>
-			</div></div></div>
-			    
-			</div><!-- /grid-a -->
+	
 			<p></p>
 		
 			
@@ -225,21 +172,27 @@
 			
 	<form class="ui-body ui-body-a ui-corner-all">
 		<div class="ui-field-contain">
-		        <label for="diluteRep">Preparation - Step One:</label>
-		        <textarea cols="40" rows="8" name="diluteRep" id="diluteRep"readonly="yes"></textarea>
+		        <label for="calcRep">Calculation:</label>
+		        <textarea cols="40" rows="3" name="calcRep" id="calcRep"readonly="yes"></textarea>
 		    </div>
 		<div class="ui-field-contain">
-		        <label for="prepRep">Preparation - Step Two:</label>
-		        <textarea cols="40" rows="8" name="prepRep" id="prepRep"readonly="yes"></textarea>
+		        <label for="prepRep">Step One:</label>
+		        <textarea cols="40" rows="3" name="prepRep" id="prepRep"readonly="readonly"></textarea>
+		    </div>
+		
+		<div class="ui-field-contain">
+		        <label for="doseRep">Step Two:</label>
+		        <textarea cols="40" rows="3" name="doseRep" id="doseRep"readonly="readonly"></textarea>
 		    </div>
 		<div class="ui-field-contain">
-		        <label for="deliveryRep">Delivery:</label>
-		        <textarea cols="40" rows="8" name="deliveryRep" id="deliveryRep"readonly="readonly"></textarea>
+		        <label for="noteRep">Note:</label>
+		        <textarea cols="40" rows="5" name="noteRep" id="noteRep"readonly="readonly"></textarea>
 		    </div>
-		<div class="ui-field-contain">
-		        <label for="stabilityRep">Stability:</label>
-		        <textarea cols="40" rows="1" name="stabilityRep" id="stabilityRep"readonly="readonly"></textarea>
-		    </div>
+			
+		<div id="morphWarn" ><div class="ui-field-contain">
+		        <label class="warning"for="warningRep">Warning:</label>
+		        <textarea cols="40" rows="2"class="warning" name="warningRep" id="warningRep"readonly="readonly"></textarea>
+		    </div>	</div>
 		<div class="noScreen"><div class="ui-field-contain" >
 		        <label for="datePrep">Report Prepared:</label>
 		        <textarea cols="40" rows="1" name="datePrep" id="datePrep"readonly="readonly"></textarea>
@@ -258,7 +211,6 @@
 	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
 	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
 			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
-			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Infusion Strength</label>
 			<label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Matches Prescription</label>
 			<p></p>
 			<label class="sign"><input class="sign"data-role="none"/></label>
@@ -266,12 +218,11 @@
 	    </fieldset>
 		
 	    <fieldset class="signCheck"id="nurse1Check" data-role="none" data-iconpos="right" data-theme="a">
-	        <legend>Before preparing infusion:</legend>
+	        <legend>Before giving:</legend>
 			<p></p>
 	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
 	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
 			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
-			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Infusion Strength</label>
 			<label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Matches Prescription</label>
 			<p></p>
 			<label class="sign"><input class="sign"data-role="none"/></label>
@@ -279,12 +230,11 @@
 	    </fieldset>
 		
 	    <fieldset class="signCheck"id="nurse2Check" data-role="none" data-iconpos="right" data-theme="a">
-	        <legend>Before preparing infusion:</legend>
+	        <legend>Before giving:</legend>
 			<p></p>
 	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
 	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
 			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
-			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Infusion Strength</label>
 			<label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Matches Prescription</label>
 			<p></p>
 			<label class="sign"><input class="sign"data-role="none"/></label>
@@ -308,8 +258,8 @@
             
             <h3 style="float: left; margin-top: 8px;">
                 <p>
-                    <strong>Wellington NICU Infusion Calculators </strong><br>
-                    Version 2.05<br>
+                    <strong>Wellington NICU Morphine Bolus Calculator </strong><br>
+                    Version 1.00<br>
                     <a href="mailto:michael.hewson@ccdhb.org.nz" data-role="button" data-icon="mail">Report a problem...</a>
             </h3>
             <p style="clear: both; font-size: 85%; margin-bottom: 8px;">
@@ -347,12 +297,15 @@
     rules: {
 		surName:{required: true},
 		NHI:{required:true, maxlength:7,regex:true},
-		weight:{required:true,maxDecimal:true}
+		weight:{required:true,maxDecimal:true},
+		bolus:{min:50}
     },
     messages: {
 		surName: "Name is required",
 		NHI:"Valid NHI required",
-		weight: "Weight is required: 0.3 - 6 kg"
+		weight: "Weight is required: 0.3 - 6 kg",
+		bolus: "Select required morphine bolus"
+		
     }
 });
 
