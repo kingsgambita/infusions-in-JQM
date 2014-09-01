@@ -30,7 +30,7 @@ var actualVol;	//(targetAmount/(ampAmount/ampVolume)) rounded to 1 decimal place
 var diluentVol;	//(syringeVol-actualVol) rounded to 1 decimal place
 var preparationBox; //the message in the report re preparation
 var deliveryBox;	//the message in the report re delivery
-var warningBox="Doses of 0.5 - 5 micrograms/kg/min represent anticonvulsant dose range.\nSedation dose range is much lower: 0.15 - 0.5 micrograms/kg/min - see monograph.";
+var warningBox="Doses of 0.5 - 5 micrograms/kg/min represent anticonvulsant dose range.\nSedation dose is much lower: 0.15 - 0.5 micrograms/kg/min.";
 var solutionConc;	//calculated drug concentration in syringe
 var stabilityBox;//the message in the report re stability
 var datePrep;//the time and date of report preparation

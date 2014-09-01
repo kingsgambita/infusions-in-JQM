@@ -14,11 +14,11 @@ var syringeVol;		//usually will be 50 mL
 var multiple;
 var maxDoubleWeight;	//the greatest weight for which double strength remains within the stability limits or otherwise permitted. Set to zero if double strength never permitted.
 var maxQuadWeight;		//the greatest weight for which quad strength remains within the stability limits or otherwise permitted. set to zero if quad strength never allowed.
-var doseBoxA = "For term infants over one week postnatal age the standard gentamicin dose is 7.5 mg/kg every 24 hours.";//the dosing rules when CGA>38 weeks, and postnatal age > 7 days
-var doseBoxB= "For term infants less than one week postnatal age the standard gentamicin dose is 5 mg/kg every 24 hours.";//the dosing rules when CGA>37 weeks, and postnatal age < 7 days
-var doseBoxC= "Between 30+0 and 36+6 corrected gestational age the standard gentamicin dose is 3.5 mg/kg every 24 hours.";//the dosing rules when CGA 30 - 36+6 weeks
-var doseBoxD= "Below 30 weeks corrected gestational age the standard gentamicin dose is 2.5 mg/kg every 24 hours.";//the dosing rules when CGA<30 weeks
-var doseBoxE= "For infants beyond Term + 4 weeks discuss dosing with Pharmacist and / or SMO";//the dosing rules when beyond Term + 4 weeks
+var doseBoxA;
+var doseBoxB;
+var doseBoxC;
+var doseBoxD;
+var doseBoxE;
 
 var delBoxDouble;
 var delBoxQuad;//the delivery results when quad strength infusion selected
