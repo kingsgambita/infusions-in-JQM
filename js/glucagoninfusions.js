@@ -126,7 +126,7 @@ function stepTwoSubmission() {
 	var infusionStrengthText=$( "#strength option:selected" ).text();
 	$('#strength-rep').val(infusionStrengthText);
 	
-	switch (infusionStrengthText){
+	switch (infusionStrengthText){	// places the correct delivery text depecding on strength, and adds warning class if not single - which currently has the effect of making stregth field bold and red text. 
 	case "Single":
 		strengthMultiple=1;
 		deliveryBox=delBoxSingle;
@@ -154,9 +154,9 @@ function stepTwoSubmission() {
 	
 	actualAmount = roundToOne(ampAmount*actualVol/ampVolume);
 	diluentVol=roundToOne(syringeVol-actualVol);
-	solutionConc = roundToThree(actualAmount/syringeVol);	
+	solutionConc = roundToTwo(actualAmount/syringeVol);	
 	
-	preparationBox="Add "+actualVol+ " mL ("+actualAmount+" "+ampAmtUnits+") of "+drugName+" ("+ampDescription+") to "+diluentVol+" mL of "+infusionFluid+ "\nThis will give "+syringeVol+ " mL of a "+solutionConc+" "+ampAmtUnits+ "/mL ("+solutionConc*1000+" "+amtUnitThousandth+"/mL) solution of "+drugName;
+	preparationBox="Add "+actualVol+ " mL ("+actualAmount+" "+ampAmtUnits+") of "+drugName+" ("+ampDescription+") to "+diluentVol+" mL of "+infusionFluid+ "\nThis will give "+syringeVol+ " mL of a "+solutionConc+" "+ampAmtUnits+ "/mL solution of "+drugName;
 	
 	bolusBox="Bolus 50 micrograms/kg = "+roundToZero(weight*50)+" micrograms = "+roundToOne(((weight*50)/solutionConc)/1000)+" mL.\nBolus 100 micrograms/kg = "+roundToZero(weight*100)+" micrograms = "+roundToOne(((weight*100)/solutionConc)/1000)+" mL."
 	
@@ -164,7 +164,7 @@ function stepTwoSubmission() {
 	
 	if(alwaysStable > 0){
 		stabilityDuration=standardStability;
-		stabilityBox="This infusion has a "+standardStabilityHour+"-hour stability. Protect from light: cover the syringe and filter with foil and use light-safe tubing.";
+		stabilityBox="This infusion has a "+standardStabilityHour+"-hour stability. Protect from light.";
 		$("#stabilityRep").removeAttr("class","warning");
 	}
 	

@@ -42,12 +42,12 @@ label{font:9pt Arial, Georgia,"Times New Roman",Times, serif !important;
 }*/
 
 h1{
-	font:14pt Arial!important;
+	font:13pt Arial!important;
 }
 
 #stickyLabel{
 	border:2pt ;
-	height: 2cm;
+	height: 1.6cm;
 }
 
 .ui-state-disabled {

@@ -37,9 +37,8 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"></script>
- <script type="text/javascript" src="js/dobutamine.js"></script>
- <script type="text/javascript" src="js/infusions.js"></script>
-
+ <script type="text/javascript" src="js/octreotidechylo.js"></script>
+ <script type="text/javascript" src="js/chyloinfusions.js"></script>
 <HTML>
 <HEAD>
 <TITLE>C&amp;C DHB Neonatal Unit</TITLE>
@@ -56,7 +55,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepOne">
 
 	<div data-role="header">
-		<h1>Dobutamine Infusions</h1>
+		<h1>Octreotide Infusions for Chylothorax</h1>
 		<a href="#about" data-icon="info" data-transition="slidedown" class="ui-btn-right"
 		        data-rel="dialog">About</a>
 	</div><!-- /header -->
@@ -106,7 +105,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepTwo">
 
 	<div data-role="header">
-		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dobutamine Infusions</h1>
+		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Octreotide Infusions for Chylothorax</h1>
 		
 	</div><!-- /header -->
 
@@ -174,7 +173,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="theReport">
 
 	<div data-role="header">
-		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dobutamine Infusion Preparation</h1>
+		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Octreotide (for Chylothorax) Infusion Preparation</h1>
 		<a class="noPrint" id="mono" href="" data-icon="info" target="_blank"class="ui-btn-right"
         data-rel="dialog">Monograph</a>
 	</div><!-- /header -->
@@ -235,6 +234,13 @@
 		        <label for="stabilityRep">Stability:</label>
 		        <textarea cols="40" rows="8" name="stabilityRep" id="stabilityRep"readonly="readonly"></textarea>
 		    </div>
+		<div id="midazWarn"><div class="ui-field-contain">
+		        <label class="warning"for="warningRep">Warning:</label>
+		        <textarea cols="40" rows="2"class="warning" name="warningRep" id="warningRep"readonly="readonly"></textarea>
+		    </div>	
+			
+			
+	    </div>	
 		<div class="noScreen"><div class="ui-field-contain" >
 		        <label for="datePrep">Report Prepared:</label>
 		        <textarea cols="40" rows="1" name="datePrep" id="datePrep"readonly="readonly"></textarea>

@@ -35,16 +35,16 @@ var actualVol;	//(targetAmount/(ampAmount/ampVolume)) rounded to 1 decimal place
 var diluentVol;	//(syringeVol-actualVol) rounded to 1 decimal place
 var preparationBox; //the message in the report re preparation
 var deliveryBox;	//the message in the report re delivery
-var warningBox="Caution: risk of 10-fold error. Volume to draw at Step Two is less than 0.1 mL";
-var note = "Administer this 0.5 mL as slow IV push over 5 – 10 minutes followed by saline flush ie Morphine together with flush should not be administered faster than over 5 – 10 minutes";
+var warningBox="Caution: risk of 10-fold error. Volume to draw up at Step Two is less than 0.1 mL";
+var note = "Administer as a slow IV push followed by NaCl flush over 5 – 10 minutes";
 var solutionConc;	//calculated drug concentration in syringe
 var stabilityBox;//the message in the report re stability
 var datePrep;//the time and date of report preparation
 var dateExp;//the time and date of solution expiration
-var stabilityDuration=4; //the calculated stability in days of the solution once prepared - may be zero or one in the case of dopamine
+var stabilityDuration=0; //the calculated stability in days of the solution once prepared - may be zero in the case of morphine bolus because we want new report to be used for each one-off dose
 var standardStabilityHour=standardStability*24; //the number of hours the solution is stable at standard concentration range
 var stable;//boolean expression of stability
 var solutionDescription; //a variable which is not used but could be - to concatenate the description assembled for the prep report
-var stepOne = "Draw up 1 mL Morphine (10 mg/ml ampoule) and 9 ml NaCl into a 10 mL syringe to give a total volume 10 ml. The morphine concentration in the 10 ml syringe is now 10 mg in 10 ml = 1 mg/ml = 1000 micrograms/ml";
+var stepOne = "Draw up 1 mL Morphine (10 mg/ml ampoule) and add to 9 ml NaCl. \nFinal concentration: 1 mg/ml = 1000 micrograms/ml";
 
 

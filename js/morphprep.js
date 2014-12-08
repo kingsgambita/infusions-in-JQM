@@ -46,7 +46,7 @@ function stepOneSubmission() {
 	}
 	
 	
-	var doseBox="Draw  "+doseVol+" ml of this 1 mg/mL solution in a 1ml syringe and dilute to 0.5 ml with normal saline (in a 3ml syringe)";
+	var doseBox="Draw up "+doseVol+" ml of this 1 mg/mL solution and add to 0.5 ml NaCl";
 	
 	var calcRep=bolus+" micrograms/kg = "+dose+" micrograms morphine."+calcRepRound;
 	var finalDose;

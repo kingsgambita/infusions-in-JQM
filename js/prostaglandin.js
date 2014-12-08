@@ -14,7 +14,7 @@ var syringeVol=50;		//usually will be 50 mL
 var multiple = 150;
 var maxDoubleWeight = 0;	//the greatest weight for which double strength remains within the stability limits or otherwise permitted. Set to zero if double strength never permitted.
 var maxQuadWeight = 0;		//the greatest weight for which quad strength remains within the stability limits or otherwise permitted. set to zero if quad strength never allowed.
-var delBoxSingle= "0.1 mL/hr\t = 0.005 micrograms/kg/min\t = 5 nano-gm/kg/min \n0.5 mL/hr\t = 0.025 micrograms/kg/min\t = 25 nano-gm/kg/min\n1 mL/hour\t = 0.05 micrograms/kg/min\t = 50 nano-gm/kg/min \n2 mL/hour\t = 0.1 micrograms/kg/min\t = 100 nano-gm/kg/min";//the delivery results when single strength infusion selected
+var delBoxSingle= "0.1 mL/hr\t = 0.005 micrograms/kg/min\t = 5 nano-gm/kg/min \n0.5 mL/hr\t = 0.025 micrograms/kg/min\t = 25 nano-gm/kg/min\n1 mL/hour\t = 0.05  micrograms/kg/min\t = 50 nano-gm/kg/min \n2 mL/hour\t = 0.1  micrograms/kg/min  \t =  100 nano-gm/kg/min";//the delivery results when single strength infusion selected
 var delBoxDouble= "";
 var delBoxQuad= "";//the delivery results when quad strength infusion selected
 var standardStability=1; //the number of days the solution is stable at standard concentration range
