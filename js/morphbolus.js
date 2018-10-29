@@ -8,8 +8,11 @@ var ampVolUnits; //units of ampoule volume
 var ampAmount;	//amount of drug in ampoule
 var ampAmtUnits="mg";	//units of mass of ampoule drug amount
 var amtUnitThousandth="micrograms";	//the mass unit = to 1/1000 of ampAmtUnits
+var useThousandths=1;	//if report to include reference to ampUnitThousandths set value to 1. Otherwise set value to zero
 var alwaysStable=1;		//if no stability implications set value to 1. Otherwise 0. If = 1 this will bypass the stability calculations and return a standard message to stabilityBox
-var stabThreshold;	//stability threshold in mg/mL
+var stabThreshold;	//stability threshold in mg/mL if known
+var intermedStabThreshold;	//the intermediate stability threshold in mg/mL where a higher threshold may be permitted with warnings. Set to the same value as stabThreshold if not required.
+var intermedStabilityFactor=1;	//multiple (usually not greater than 1)applied to standardStability when intermediate stability exceeded
 var syringeVol;		//usually will be 50 mL
 var multiple;
 var maxDoubleWeight;	//the greatest weight for which double strength remains within the stability limits or otherwise permitted. Set to zero if double strength never permitted.
@@ -24,6 +27,8 @@ var delBoxDouble;
 var delBoxQuad;//the delivery results when quad strength infusion selected
 var standardStability; //the number of days the solution is stable at standard concentration range
 var infusionValues; //the available infusion fluids for this drug, as an array with key and value. These will be loaded by the function setInfusionValues
+var uniqueStabMessage="";//any additional stability instructions
+
 var monograph="http://silentone/content/capitalDoc/310_Women_and_Children_s_Health/05_NICU/08_Drug_monographs/L_to_N/000000001806/__file__/000000001806.DOC";//link to monograph
 // Global calculated infusion variables
 
@@ -33,8 +38,16 @@ var targetAmount;	//(weight*strengthMultiple*multiple) rounded to 1 decimal plac
 var actualAmount;	//(ampAmount*actualVol/ampVolume) rounded to 1 decimal place. This is the actual amount of drug added to the syringe.
 var actualVol;	//(targetAmount/(ampAmount/ampVolume)) rounded to 1 decimal place. This is the actual volume of drug to add to the syringe.
 var diluentVol;	//(syringeVol-actualVol) rounded to 1 decimal place
-var preparationBox; //the message in the report re preparation
+var diluteBox; ///the calculated message in the report re dilution phase of preparation (applies to prosta)
+var diluteWeightThreshold;	//weight above which diluteMessageOne applies (prostin)
+var diluteMessageOneA;	//first half of dilution message option one
+var diluteMessageOneB;	//second half of dilution message option one
+var diluteMessageTwoA;	//first half of dilution message option two
+var diluteMessageTwoB;	//second half of dilution message option two
+var preparationBox; //the message in the report re preparation; //the message in the report re preparation
+var uniquePrepMessage="";//any additional preparation instructions (eg used in inshyperkal)
 var deliveryBox;	//the message in the report re delivery
+var loVolwarningBox="Caution: risk of 10-fold error. Volume to draw up at Step Two is less than 0.1 mL";
 var warningBox="Caution: risk of 10-fold error. Volume to draw up at Step Two is less than 0.1 mL";
 var note = "Administer as a slow IV push followed by NaCl flush over 5 – 10 minutes";
 var solutionConc;	//calculated drug concentration in syringe

@@ -1,4 +1,6 @@
-
+$(document).bind('pageshow', function() {
+$('#surName').focus();
+});//autofocus the surName form element
 
 
 function roundToTwo(num) {    
@@ -27,6 +29,7 @@ function stepOneSubmission() {
 	
     var nhi = $('#NHI').val();
     $('#nhi-rep').val(nhi);
+	var bigNHI=nhi.toUpperCase();
 	
     var weight = $('#weight').val();
 	var weightKg = (weight+" kg");
@@ -36,8 +39,12 @@ function stepOneSubmission() {
 	var dose = roundToOne(bolus*weight);
 	
 	var doseVol = roundToTwo(dose/1000);
+	sessionStorage.setItem("doseVol", doseVol);
 	var actualDose = doseVol*1000;
 	var diffDose = dose-actualDose;
+	
+	var requestSummary = "Name: "+name+"     NHI: "+bigNHI+"     Weight: "+weight+" kg\nMedication: "+drugName+"     Dose: "+bolus+" micrograms/kg";
+	
 	if (diffDose===0){
 		calcRepRound=""
 	}
@@ -53,32 +60,16 @@ function stepOneSubmission() {
 	
 	var dosePerKg=roundToOne(dose*weight);
 	
+	
 	switch (doseVol<0.1){
 	case (true):
-		$("#morphWarn").removeAttr("class","noScreenorPrint");
+		$("#loVolWarn").removeAttr("class","noScreenorPrint");
 		break;
 	case (false):
-		$("#morphWarn").attr("class","noScreenorPrint");
+		$("#loVolWarn").attr("class","noScreenorPrint");
 		break;
 	
 	}
-	
-	
-	$('#calcRep').val(calcRep);
-	$('#prepRep').val(stepOne);
-	$('#doseRep').val(doseBox);
-	$('#noteRep').val(note);
-	$('#warningRep').val(warningBox);
-	
-	
-	
-	
-    $.mobile.pageContainer.pagecontainer("change", "#theReport");
-};
-};
-
-
-function dateFunction() {
 	var now     = new Date();
 	var year    = now.getFullYear();
     var month   = now.getMonth()+1; 
@@ -128,6 +119,46 @@ function dateFunction() {
     }   
     var dateExp = day+'/'+month+'/'+year+' at '+hour+':'+minute;
 	$('#dateExp').val(dateExp);
-}		
+	
+	$('#calcRep').val(calcRep);
+	$('#prepRep').val(stepOne);
+	$('#doseRep').val(doseBox);
+	$('#noteRep').val(note);
+	$('#loVolwarningRep').val(loVolwarningBox);
+	$('#requestSummary').val(requestSummary);
+	
+	
+	
+	
+    $.mobile.pageContainer.pagecontainer("change", "#theReport");
+};
+};
+
+function testWeight(){
+	var weight = $('#weight-rep').val();
+	var n = weight.length;
+	
+	switch (n>0){
+	case (true):
+			var doseVol = sessionStorage.getItem("doseVol");
+			switch (0 < doseVol && doseVol <0.1){		//when the actualVol drawn from ampoule is less than 0.1 mL, a warning field is added to reports to warn about risk of 10 fold error
+			case (true):
+				$("#loVolWarn").removeAttr("class","noScreenorPrint");
+				break;
+			case (false):
+				$("#loVolWarn").attr("class","noScreenorPrint");
+				break;
+			}
+		window.print();
+
+		break;
+	case (false):
+		window.alert("We're sorry - something has gone wrong...\nReturning to home screen.");
+		$.mobile.pageContainer.pagecontainer("change", "#stepOne");
+		break;
+	}
+}
+
+
 
 

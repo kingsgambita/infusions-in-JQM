@@ -14,12 +14,12 @@
 /* the above seems to cause resize bug with stability report - need to test in IE*/
 
 
-
 div.errorProne{
 	height: 70px;
 }
 #nhiTwo{text-transform:uppercase}
 #nhi-rep{text-transform:uppercase}
+
 
 
 .noScreenorPrint{

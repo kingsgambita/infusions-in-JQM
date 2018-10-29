@@ -38,7 +38,17 @@
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"></script>
  <script type="text/javascript" src="js/dextrose.js"></script>
- <script type="text/javascript" src="js/dexinfusions.js"></script>
+ <script type="text/javascript" src="js/dexinfusion2.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53870914-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <HTML>
 <HEAD>
 <TITLE>C&amp;C DHB Neonatal Unit</TITLE>
@@ -70,7 +80,7 @@
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:80px" class="errorProne"><div class="ui-field-contain">
 			    <label for="NHI">NHI:</label>
-			    <input name="NHI" id="NHI" autocomplete="off" placeholder="NHI" value="" type="text" />
+			    <input name="NHI" id="NHI" autocomplete="off" placeholder="Unique Identifier" value="" type="text" />
 			</div></div></div>
 			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:80px"class="errorProne"><div class="ui-field-contain">
 			    <label for="weight">Wt (kg):</label>
@@ -119,7 +129,7 @@
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:80px" class="errorProne"><div class="ui-field-contain">
 			    <label for="nhiTwo">NHI:</label>
-			    <input name="nhiTwo" id="nhiTwo" autocomplete="off" placeholder="NHI" value="" type="text" readonly="readonly"disabled="true"/>
+			    <input name="nhiTwo" id="nhiTwo" autocomplete="off" placeholder="Unique Identifier" value="" type="text" readonly="readonly"disabled="true"/>
 			</div></div></div>
 			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:80px"class="errorProne"><div class="ui-field-contain">
 			    <label for="weightTwo">Weight:</label>
@@ -146,6 +156,9 @@
 						<option value=16>16%</option>
 						<option value=18>18%</option>
 						<option value=20>20%</option>
+						<option value=22.5>22.5%</option>
+						<option value=25>25%</option>
+						
 					</select>
 			</div></div></div>
 			    
@@ -177,13 +190,12 @@
 
 	<div data-role="header">
 		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dextrose Infusion Preparation</h1>
-		<a class="noPrint" id="mono" href="" data-icon="info" target="_blank"class="ui-btn-right"
-        data-rel="dialog">Monograph</a>
+		<A class="noPrint" id="mono" href="" target="_blank"><IMG height="30" width="90"  align="center"  src="http://web2/hhs/CH/NNU/RMO/drug/logo.png"onerror='$(this).hide();'/></A>
 	</div><!-- /header -->
 
 	<div data-role="content">	
 		<div class="noScreen" id="stickyLabel">Affix Patient Identification Label Here</div>
-		<div>
+		<div class="noPrint">
 			<div class="ui-grid-b">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="name-rep">Name:</label>
@@ -191,7 +203,7 @@
 			</div></div></div>
 			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="nhi-rep">NHI:</label>
-			    <input name="nhi-rep" id="nhi-rep" placeholder="NHI" value="" type="text" readonly="readonly"/>
+			    <input name="nhi-rep" id="nhi-rep" placeholder="Unique Identifier" value="" type="text" readonly="readonly"/>
 			</div></div></div>
 			    <div class="ui-block-c" class="weightInput" ><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="weight-rep">Weight:</label>
@@ -202,7 +214,7 @@
 			<div class="ui-grid-a">
 			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px"><div class="ui-field-contain">
 			    <label for="fluid-rep">Target Volume:</label>
-			    <input name="fluid-rep" id="fluid-rep" placeholder="Infusion Fluid" value=""readonly="readonly">
+			    <input name="fluid-rep" id="fluid-rep" placeholder="Infusion Fluid" value=""readonly="readonly" class="warning">
 					
 				</input>
 			</div></div></div>
@@ -225,6 +237,13 @@
 			<h3 class="noPrint">Report</h3>	
 			
 	<form class="ui-body ui-body-a ui-corner-all">
+		<div class = "noScreen">
+		<div class="ui-field-contain" class="noScreen">
+			  <label for="requestSummary">Request Summary:</label>
+			  <textarea cols="40" rows="4"name="requestSummary"id="requestSummary"readonly="readonly"></textarea>
+			  </div>
+			  </div>
+			<!-- the noScreen (print) output of demographics and infusion fluid and strength -->
 		<div class="ui-field-contain">
 		        <label for="prepRep">Preparation:</label>
 		        <textarea cols="40" rows="8" name="prepRep" id="prepRep"readonly="yes"></textarea>
@@ -234,6 +253,11 @@
 		        <label for="stabilityRep">Stability:</label>
 		        <textarea cols="40" rows="8" name="stabilityRep" id="stabilityRep"readonly="readonly"></textarea>
 		    </div></div>
+			
+			<div id="loVolWarn" class="noScreenorPrint"><div class="ui-field-contain">
+			        <label class="warning"for="loVolwarningRep">Warning:</label>
+			        <textarea cols="40" rows="2"class="warning" name="loVolwarningRep" id="loVolwarningRep"readonly="readonly"></textarea>
+			    </div>	</div>
 			
 			<div id="dexWarn" class="noPrint noScreen" ><div class="ui-field-contain">
 			        <label class="warning"for="warningRep">Warning:</label>
@@ -252,7 +276,7 @@
 	<form class="noScreen">
 		
 	    <fieldset class="signCheck"id="docCheck" data-role="none" data-iconpos="right" data-theme="a">
-	        <legend>Prescribing NNS / RMO:</legend>
+	        <legend>Prescribing NNS / Doctor:</legend>
 			<p></p>
 	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
 	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
@@ -299,7 +323,7 @@
 	</div><!-- /content -->
 
 	<div data-role="footer" class="noPrint">
-		<h4><a href="#" class="noPrint" data-role="button" onClick="dateFunction(); window.print();return false">Print Report</a></h4>
+		<h4><a href="#" class="noPrint" data-role="button" onClick="testWeight();return false">Print Report</a></h4>
 	</div><!-- /footer -->
 </div><!-- /page -->
 
@@ -311,7 +335,7 @@
             <h3 style="float: left; margin-top: 8px;">
                 <p>
                     <strong>Wellington NICU Infusion Calculators </strong><br>
-                    Version 2.09<br>
+                    Version 2.24<br>Michael Hewson 2015<br>
                     <a href="mailto:michael.hewson@ccdhb.org.nz" data-role="button" data-icon="mail">Report a problem...</a>
             </h3>
             <p style="clear: both; font-size: 85%; margin-bottom: 8px;">
@@ -348,7 +372,7 @@
     },
     rules: {
 		surName:{required: true},
-		NHI:{required:true, maxlength:7,regex:true},
+		NHI:{required:true, maxlength:10,regex:false},
 		weight:{required:true,maxDecimal:true}
     },
     messages: {

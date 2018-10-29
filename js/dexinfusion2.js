@@ -1,3 +1,8 @@
+//variant of infusion2.js with calculations for preparation of differing dex infusion strengths
+
+$(document).bind('pageshow', function() {
+$('#surName').focus();
+});//autofocus the surName form element
 
 function roundHalf(num) {
     num = Math.round(num*2)/2;
@@ -59,31 +64,38 @@ function stepOneSubmission() {
 
 function stepTwoSubmission() {
 	$("#formStepTwo").valid()
-	if($("#formStepTwo").valid()) {
+	var weightTest = $('#weightTwo').val();
+	if($("#formStepTwo").valid()  && (weightTest>0)) {	//see if weightTest is > zero: if so flip back to stepOne. This handles situation where refresh and then page back from report causes empty fields
 		
 		$("#mono").attr("href",""+monograph);
-		
+	
 	
     var name = $('#nameTwo').val();
     $('#name-rep').val(name);
 	
     var nhi = $('#nhiTwo').val();
     $('#nhi-rep').val(nhi);
+	var bigNHI=nhi.toUpperCase();
 	
     var weight = $('#weightTwo').val();
 	var weightKg = (weight+" kg");
     $('#weight-rep').val(weightKg);
 	
+	
 	var infusionFluid = $('#fluid').val();
 	var infusionFluidText=$( "#fluid option:selected" ).text();
 	syringeVol=infusionFluid;
+	window.alert("You selected "+infusionFluidText+" infusion volume.");	
 	
 	$('#fluid-rep').val(infusionFluidText);
 	
 	var infusionStrength = $('#strength').val();
+	sessionStorage.setItem("infusionStrength", infusionStrength);
 	
 	var infusionStrengthText=$( "#strength option:selected" ).text();
 	$('#strength-rep').val(infusionStrengthText);
+	
+	var requestSummary = "Name: "+name+"     NHI: "+bigNHI+"     Weight: "+weight+" kg\nInfusion Volume: "+infusionFluid+" mL\nStrength: "+infusionStrengthText;
 	
 	switch (infusionStrength<10){
 	case true:
@@ -105,6 +117,15 @@ function stepTwoSubmission() {
 	diluentVol=roundToOne(syringeVol-actualVol);
 	solutionConc = roundHalf((actualAmount+secondaryAmount)*100/syringeVol);	
 	
+	switch (actualVol<0.1){		//when the actualVol drawn from ampoule is less than 0.1 mL, a warning field is added to reports to warn about risk of 10 fold error
+	case (true):
+		$("#loVolWarn").removeAttr("class","noScreenorPrint");
+		break;
+	case (false):
+		$("#loVolWarn").attr("class","noScreenorPrint");
+		break;
+	}
+	
 	preparationBox="Add "+actualVol+ " mL ("+actualAmount+" "+ampAmtUnits+") of "+ampName+" ("+ampDescription+") to "+diluentVol+" mL of "+secondaryFluid+ "\nThis will give "+syringeVol+ " mL of a "+solutionConc+" % ("+solutionConc+" grams per 100 mL) solution of "+drugName;
 	
 	
@@ -122,7 +143,6 @@ function stepTwoSubmission() {
 	if(alwaysStable > 0){
 		stabilityDuration=standardStability;
 		stabilityBox="This infusion has a "+standardStabilityHour+"-hour stability";
-		$("#stabilityRep").removeAttr("class","warning");
 	}
 	
 	else
@@ -134,73 +154,102 @@ function stepTwoSubmission() {
 		else{
 		stabilityDuration=standardStability;	
 stabilityBox="This infusion has a concentration of "+solutionConc+ " "+ampAmtUnits+"/mL which is not greater than the stability threshold of "+stabThreshold+" "+ampAmtUnits+"/mL.\nThe infusion has a "+standardStabilityHour+"-hour stability";
-$("#stabilityRep").removeAttr("class","warning");
+
 }
+
+var now     = new Date();
+var year    = now.getFullYear();
+var month   = now.getMonth()+1; 
+var day     = now.getDate();
+var hour    = now.getHours();
+var minute  = now.getMinutes();
+var second  = now.getSeconds(); 
+if(month.toString().length == 1) {
+    var month = '0'+month;
+}
+if(day.toString().length == 1) {
+    var day = '0'+day;
+}   
+if(hour.toString().length == 1) {
+    var hour = '0'+hour;
+}
+if(minute.toString().length == 1) {
+    var minute = '0'+minute;
+}
+if(second.toString().length == 1) {
+    var second = '0'+second;
+}   
+var datePrep = day+'/'+month+'/'+year+' at '+hour+':'+minute;
+$('#datePrep').val(datePrep);
+
+var expiry = new Date(now.getTime() + (stabilityDuration*(24 * 60 * 60 * 1000)));	
+var year    = expiry.getFullYear();
+var month   = expiry.getMonth()+1; 
+var day     = expiry.getDate();
+var hour    = expiry.getHours();
+var minute  = expiry.getMinutes();
+var second  = expiry.getSeconds(); 
+if(month.toString().length == 1) {
+    var month = '0'+month;
+}
+if(day.toString().length == 1) {
+    var day = '0'+day;
+}   
+if(hour.toString().length == 1) {
+    var hour = '0'+hour;
+}
+if(minute.toString().length == 1) {
+    var minute = '0'+minute;
+}
+if(second.toString().length == 1) {
+    var second = '0'+second;
+}   
+var dateExp = day+'/'+month+'/'+year+' at '+hour+':'+minute;
+$('#dateExp').val(dateExp);
+
 	
 	$('#prepRep').val(preparationBox);
 	$('#deliveryRep').val(deliveryBox);
 	$('#stabilityRep').val(stabilityBox);
 	$('#datePrep').val(datePrep);	
 	$('#dateExp').val(dateExp);
+	$('#requestSummary').val(requestSummary);
 	
 		
 		
 	
     $.mobile.pageContainer.pagecontainer("change", "#theReport");
-};
+}
+
+else { 
+	window.alert("We're sorry - something has gone wrong...\nReturning to home screen.");
+	$.mobile.pageContainer.pagecontainer("change", "#stepOne");}
 };
 
-
-function dateFunction() {
-	var now     = new Date();
-	var year    = now.getFullYear();
-    var month   = now.getMonth()+1; 
-    var day     = now.getDate();
-    var hour    = now.getHours();
-    var minute  = now.getMinutes();
-    var second  = now.getSeconds(); 
-    if(month.toString().length == 1) {
-        var month = '0'+month;
-    }
-    if(day.toString().length == 1) {
-        var day = '0'+day;
-    }   
-    if(hour.toString().length == 1) {
-        var hour = '0'+hour;
-    }
-    if(minute.toString().length == 1) {
-        var minute = '0'+minute;
-    }
-    if(second.toString().length == 1) {
-        var second = '0'+second;
-    }   
-    var datePrep = day+'/'+month+'/'+year+' at '+hour+':'+minute;
-	$('#datePrep').val(datePrep);
+function testWeight(){
+	var weight = $('#weight-rep').val();
+	var n = weight.length;
 	
-	var expiry = new Date(now.getTime() + (stabilityDuration*(24 * 60 * 60 * 1000)));	
-	var year    = expiry.getFullYear();
-    var month   = expiry.getMonth()+1; 
-    var day     = expiry.getDate();
-    var hour    = expiry.getHours();
-    var minute  = expiry.getMinutes();
-    var second  = expiry.getSeconds(); 
-    if(month.toString().length == 1) {
-        var month = '0'+month;
-    }
-    if(day.toString().length == 1) {
-        var day = '0'+day;
-    }   
-    if(hour.toString().length == 1) {
-        var hour = '0'+hour;
-    }
-    if(minute.toString().length == 1) {
-        var minute = '0'+minute;
-    }
-    if(second.toString().length == 1) {
-        var second = '0'+second;
-    }   
-    var dateExp = day+'/'+month+'/'+year+' at '+hour+':'+minute;
-	$('#dateExp').val(dateExp);
-}		
+	switch (n>0){
+	case (true):
+			var infusionStrength = sessionStorage.getItem("infusionStrength");
+			switch (infusionStrength<14){
+			case true:
+				$("#dexWarn").attr("class","noPrint noScreen");
+				break;
+			case false:
+				$("#dexWarn").removeAttr("class","noPrint noScreen");
+				break;
+			}		
+		window.print();
+		break;
+	case (false):
+		window.alert("We're sorry - something has gone wrong...\nReturning to home screen.");
+		$.mobile.pageContainer.pagecontainer("change", "#stepOne");
+		break;
+	}
+}
+
+	
 
 

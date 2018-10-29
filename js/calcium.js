@@ -1,31 +1,33 @@
 
 // Global pre-defined infusion variables
 
-var drugName = "Doxapram";
+var drugName = "Calcium Gluconate";
 var drugPurpose;	//only used where drug calculations differ according to purpose eg insulin
-var ampVolume=5;	//drug ampoule volume
+var ampVolume=10;	//drug ampoule volume
 var ampVolUnits="mL"; //units of ampoule volume
-var ampAmount=100;	//amount of drug in ampoule
+var ampAmount=1000;	//amount of drug in ampoule
 var ampAmtUnits="mg";	//units of mass of ampoule drug amount
-var amtUnitThousandth="micrograms";	//the mass unit = to 1/1000 of ampAmtUnits
-var useThousandths=1;	//if report to include reference to ampUnitThousandths set value to 1. Otherwise set value to zero
-var alwaysStable=0;		//if no stability implications set value to 1. Otherwise 0. If = 1 this will bypass the stability calculations and return a standard message to stabilityBox
-var stabThreshold=2;	//stability threshold in mg/mL
-var intermedStabThreshold=2;	//the intermediate stability threshold in mg/mL where a higher threshold may be permitted with warnings. Set to the same value as stabThreshold if not required.
+var amtUnitThousandth;	//the mass unit = to 1/1000 of ampAmtUnits
+var useThousandths=0;	//if report to include reference to ampUnitThousandths set value to 1. Otherwise set value to zero
+var alwaysStable=1;		//if no stability implications set value to 1. Otherwise 0. If = 1 this will bypass the stability calculations and return a standard message to stabilityBox
+var stabThreshold;	//stability threshold in mg/mL if known
+var intermedStabThreshold;	//the intermediate stability threshold in mg/mL where a higher threshold may be permitted with warnings. Set to the same value as stabThreshold if not required.
 var intermedStabilityFactor=1;	//multiple (usually not greater than 1)applied to standardStability when intermediate stability exceeded
 var syringeVol=50;		//usually will be 50 mL
-var multiple = 30;
-var maxDoubleWeight = 1.682;	//the greatest weight for which double strength remains within the stability limits or otherwise permitted. Set to zero if double strength never permitted.
-var maxQuadWeight = 0.841;		//the greatest weight for which quad strength remains within the stability limits or otherwise permitted. set to zero if quad strength never allowed.
+var multiple = 1000;
+var volumeMultiple;	//factor by which syringeVol may be increased in appropriate circumstances
+var maxDoubleWeight = 0;	//the greatest weight for which double strength remains within the stability limits or otherwise permitted. Set to zero if double strength never permitted.
+var maxQuadWeight = 0;		//the greatest weight for which quad strength remains within the stability limits or otherwise permitted. set to zero if quad strength never allowed.
 var maxOctoWeight = 0;		//the greatest weight for which octo strength remains within the stability limits or otherwise permitted. set to zero if octo strength never allowed.
-var delBoxSingle= "0.1 mL/hour = 0.06 mg/kg/hour \n0.5 mL/hour = 0.3 mg/kg/hour \n1 mL/hour = 0.6 mg/kg/hour\n2 mL/hour = 1.2 mg/kg/hour \n2.5 mL/hour = 1.5 mg/kg/hour";//the delivery results when single strength infusion selected
-var delBoxDouble= "0.1 mL/hour = 0.12 mg/kg/hour \n0.5 mL/hour = 0.6 mg/kg/hour \n1 mL/hour = 1.2 mg/kg/hour\n1.25 mL/hour = 1.5 mg/kg/hour";
-var delBoxQuad= "0.1 mL/hour = 0.24 mg/kg/hour \n0.5 mL/hour = 1.2 mg/kg/hour \n0.6 mL/hour = 1.44 mg/kg/hour";//the delivery results when quad strength infusion selected
+var volWeightThreshold = 6;	//weight in kg above which syringVol is subject to a different multiple
+var delBoxSingle;//the delivery results when single strength infusion selected
+var delBoxDouble;
+var delBoxQuad;//the delivery results when quad strength infusion selected
 var standardStability=1; //the number of days the solution is stable at standard concentration range
-var infusionValues = [{"Dextrose 5%": "Dextrose 5%", "Dextrose 10%": "Dextrose 10%","Normal Saline":"Normal Saline"}]; //the available infusion fluids for this drug, as an array with key and value. These will be loaded by the function setStrengthValues
+var infusionValues = [{"Dextrose 5%": "Dextrose 5%", "Dextrose 10%": "Dextrose 10%","Normal Saline":"Normal Saline"}]; //the available infusion fluids for this drug, as an array with key and value. These will be loaded by the function setInfusionValues
 var uniqueStabMessage="";//any additional stability instructions
 
-var monograph="http://silentone/content/capitalDoc/310_Women_and_Children_s_Health/05_NICU/08_Drug_monographs/D_to_F/000000008013/__file__/000000008013.DOC";//link to monograph
+var monograph="http://silentone/content/capitalDoc/310_Women_and_Children_s_Health/05_NICU/08_Drug_monographs/A_to_C/000000001853/__file__/000000001853.pdf";//link to monograph
 // Global calculated infusion variables
 
 var ampDescription = ampAmount+" "+ampAmtUnits+" in " +ampVolume+ " "+ampVolUnits;
@@ -46,6 +48,7 @@ var deliveryBox;	//the message in the report re delivery
 var loVolwarningBox="Caution: risk of 10-fold error. Volume to draw from ampoule is less than 0.1 mL";
 var warningBox;
 var solutionConc;	//calculated drug concentration in syringe
+var mmolConc;	//calculated drug con in syringe in mmol per mL
 var stabilityBox;//the message in the report re stability
 var datePrep;//the time and date of report preparation
 var dateExp;//the time and date of solution expiration

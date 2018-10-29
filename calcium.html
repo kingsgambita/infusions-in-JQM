@@ -37,9 +37,8 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"></script>
- <script type="text/javascript" src="js/dobutamine.js"></script>
- <script type="text/javascript" src="js/infusion2.js"></script>
-
+ <script type="text/javascript" src="js/calcium.js"></script>
+ <script type="text/javascript" src="js/constantConcinfusion2.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -66,7 +65,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepOne">
 
 	<div data-role="header">
-		<h1>Dobutamine Infusions</h1>
+		<h1>Calcium Infusions</h1>
 		<a href="#about" data-icon="info" data-transition="slidedown" class="ui-btn-right"
 		        data-rel="dialog">About</a>
 	</div><!-- /header -->
@@ -116,7 +115,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="stepTwo">
 
 	<div data-role="header">
-		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dobutamine Infusions</h1>
+		<a href="#stepOne" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Calcium Infusions</h1>
 		
 	</div><!-- /header -->
 
@@ -184,7 +183,7 @@
 <div data-role="page"data-theme="b"data-add-back-btn="true" data-back-btn-text = "Home" id="theReport">
 
 	<div data-role="header">
-		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Dobutamine Infusion Preparation</h1>
+		<a class ="noPrint" href="#stepTwo" data-role="button" data-inline="true" data-icon="back" >Back</a><h1>Calcium Infusion Preparation</h1>
 		<A class="noPrint" id="mono" href="" target="_blank"><IMG height="30" width="90"  align="center"  src="http://web2/hhs/CH/NNU/RMO/drug/logo.png"onerror='$(this).hide();'/></A>
 	</div><!-- /header -->
 
@@ -245,7 +244,7 @@
 		    </div>
 		<div class="ui-field-contain">
 		        <label for="deliveryRep">Delivery:</label>
-		        <textarea cols="40" rows="8" name="deliveryRep" id="deliveryRep"readonly="readonly"></textarea>
+		        <textarea cols="40" rows="7" name="deliveryRep" id="deliveryRep"readonly="readonly"></textarea>
 		    </div>
 		<div class="ui-field-contain">
 		        <label for="stabilityRep">Stability:</label>
@@ -273,6 +272,7 @@
 	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
 	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
 			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
+			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Volume</label>
 			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Correct Medication</label><label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Infusion Strength</label>
 			<label class="check"><input class="check"id="checkbox-h-6f" type="checkbox" data-role="none"/>Matches Prescription</label>
 			<p></p>
@@ -286,6 +286,7 @@
 	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
 	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
 			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
+			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Volume</label>
 			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Correct Medication</label><label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Infusion Strength</label>
 			<label class="check"><input class="check"id="checkbox-h-6f" type="checkbox" data-role="none"/>Matches Prescription</label>
 			<p></p>
@@ -299,6 +300,7 @@
 	        <label class="check"><input class="check"id="checkbox-h-6a" type="checkbox" data-role="none"/>Pt. Name</label>
 	      	<label class="check"><input class="check"id="checkbox-h-6b" type="checkbox" data-role="none"/>NHI</label>
 			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Weight</label>
+			<label class="check"><input class="check"id="checkbox-h-6c" type="checkbox" data-role="none"/>Volume</label>
 			<label class="check"><input class="check"id="checkbox-h-6d" type="checkbox" data-role="none"/>Correct Medication</label><label class="check"><input class="check"id="checkbox-h-6e" type="checkbox" data-role="none"/>Infusion Strength</label>
 			<label class="check"><input class="check"id="checkbox-h-6f" type="checkbox" data-role="none"/>Matches Prescription</label>
 			<p></p>
